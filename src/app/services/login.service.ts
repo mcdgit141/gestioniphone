@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -7,8 +8,10 @@ import { environment } from '../../environments/environment';
 })
 export class LoginService {
 
-  private API=environment.API_URL
-  public roles:[]
+  private API=environment.API_URL;
+  roles:[any];
+  isLoggedIn: boolean = false;
+  isAdmin:boolean = false;
 
 
   constructor(private http:HttpClient) { }
@@ -16,12 +19,25 @@ export class LoginService {
   async authentification(credentials) {
      await this.http.post(this.API+"/authenticate",credentials)
     .toPromise().then((response:any) => {
-      localStorage.setItem("token",response.jwtToken);
-      this.roles = response.authorities;
+      this.setToken(response.jwtToken);
+      this.roles=response.authorities;
+      this.isLoggedIn=true;
     });
     
-    console.log(this.roles);
-  
-    
+    this.roles.forEach(e => {
+      if (e.authority == "ROLE_ADMIN") {
+        this.isAdmin = true;
+      }});
+
+    console.log(this.isAdmin);
   }
+
+  setToken(token) {
+    localStorage.setItem("token",token);
+  }
+
+  getToken() {
+    localStorage.getItem('token');
+  }
+
 }
