@@ -12,12 +12,14 @@ export class LoginService {
   roles:[any];
   isLoggedIn: boolean = false;
   isAdmin:boolean = false;
+  redirectUrl: string;
+
 
 
   constructor(private http:HttpClient) { }
 
   async authentification(credentials) {
-     await this.http.post(this.API+"/authenticate",credentials)
+     await this.http.post("http://localhost:9095/authenticate",credentials)
     .toPromise().then((response:any) => {
       this.setToken(response.jwtToken);
       this.roles=response.authorities;
@@ -28,8 +30,8 @@ export class LoginService {
       if (e.authority == "ROLE_ADMIN") {
         this.isAdmin = true;
       }});
-
-    console.log(this.isAdmin);
+    console.log("isLoggedIn : " + this.isLoggedIn)
+    console.log("isAmin : " + this.isAdmin);
   }
 
   setToken(token) {

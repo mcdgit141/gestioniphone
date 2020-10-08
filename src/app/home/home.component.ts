@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,16 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    console.log("chargement component HOME")
   }
-  getLogin() {
-    return JSON.parse(localStorage.getItem('user')).login;
-  }
+  // getLogin() {
+  //   return JSON.parse(localStorage.getItem('user')).login;
+  // }
   
-  logout() {
-    console.log('Tentative de déconnexion');
+  // logout() {
+  //   console.log('Tentative de déconnexion');
   
-    localStorage.removeItem('user');
-    this.router.navigate(['/login']);
-  }
-
+  //   localStorage.removeItem('user');
+  //   this.router.navigate(['/login']);
+  // }
 }
