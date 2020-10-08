@@ -1,15 +1,26 @@
-<div class='row'>
+<div class='row' id="row_idForm">
     <div class="col s12 m4 offset-m4">
-        <div class="card hoverable">
+        <div class="card hoverable border-0">
+            <div class="d-flex justify-content-center">
+                <div class="col-md-6">
+                    <form (ngSubmit)="soumissionLogin(credentials)" [formGroup]="credentials">
 
-            <form (ngSubmit)="soumissionLogin(credentials)" class="row d-flex justify-content-center" [formGroup]="credentials">
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" formControlName="username" placeholder="Saisir login" required>
-                    <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe" required>
+                        <div class="form-group">
+                            <input type="text" class="form-control" formControlName="username"
+                                placeholder="Saisir login" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" formControlName="password"
+                                placeholder="Mot de passe" required>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary" id="bouton">Valider</button>
+                        </div>
+
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary" id="bouton">Valider</button>
-            </form>
-
+            </div>
 
         </div>
     </div>

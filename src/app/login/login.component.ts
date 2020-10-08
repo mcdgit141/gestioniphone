@@ -10,7 +10,8 @@ import { ReactiveFormsModule} from '@angular/forms'
 
 @Component({
 	selector: 'login',
-	templateUrl: './login.component.html'
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 	credentials;
