@@ -1,1 +1,44 @@
-<p>utilisateurs-form works!</p>
+<div class="container">
+    <h2>Habiliter un utilisateur</h2>
+
+    <form (ngSubmit)="creerUtilisateur(utilisateur)" [formGroup]="utilisateur">
+        <div class="form-group">
+            <label>Role Utilisateur</label>
+            
+            <select formControlName="role" class="form-control">
+                <!-- <option selected>Choisir un role...</option> -->
+                <option value="TYPE1">TYPE1</option>
+                <option value="TYPE2">TYPE2</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+            <dl id="definition_list" class="d-flex justify-content-around">
+                <div>
+                    <dt>TYPE1: </dt>
+                    <dd>Consultation uniquement</dd>
+                </div>
+
+                <div>
+                    <dt>TYPE2: </dt>
+                    <dd>Consultation, Ajout, Modification, Suppression</dd>
+                </div>
+
+                <div>
+                    <dt>ADMIN: </dt>
+                    <dd>Consultation, Ajout Modification, Suppression et gestion des utilisateurs</dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="form-goup">
+            <!-- <label>UID</label> -->
+            <input formControlName="uid" class="form-control" type="text" placeholder="Saisir UID" maxlength="6" />
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" type="submit">Envoyer</button>
+        </div>
+
+    </form>
+
+</div>
