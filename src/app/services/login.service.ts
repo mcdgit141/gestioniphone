@@ -12,6 +12,8 @@ export class LoginService {
   roles:[any];
   isLoggedIn: boolean = false;
   isAdmin:boolean = false;
+  redirectUrl: string;
+
 
 
   constructor(private http:HttpClient) { }
@@ -28,8 +30,8 @@ export class LoginService {
       if (e.authority == "ROLE_ADMIN") {
         this.isAdmin = true;
       }});
-
-    console.log(this.isAdmin);
+    console.log("isLoggedIn : " + this.isLoggedIn)
+    console.log("isAmin : " + this.isAdmin);
   }
 
   setToken(token) {
