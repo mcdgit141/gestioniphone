@@ -1,1 +1,31 @@
-<p>affectations-form works!</p>
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form (ngSubmit)="soumissionAffectation(dataCreateAffectation)" #dataCreateAffectation = ngForm [formGroup]="dataCreateAffectation" >
+        <div class="form-group">
+          <label for="uid">
+            Uid du collaborateur
+          </label>
+          <input type="text" id="uid" class="form-control" formControlName="uid"  placeholder="Saisir UID" required maxlength="06" ngModel>
+        </div>
+          <div class="form-group">
+          <label for="numserieiphone">
+            Numéro série Iphone
+          </label>
+          <input type="text" id="numserieiphone" class="form-control" formControlName="numserieiphone"  placeholder="Saisir numéro série Iphone" required maxlength="20" ngModel>
+        </div>
+        <div class="form-group">
+        <label for="dateaffectation">
+            Date Affectation
+        </label>
+        <input type="date" id="dateaffectation" class="form-control" formControlName="dateaffectation" placeholder="Saisir la date d'affectation" required  ngModel="dateaffectation | date:'yyyy-MM-dd'" >
+        </div>
+        <div class="form-group">
+            <label for="Commentaire">
+                Commentaire
+            </label>
+            <input type="text" id="commentaire" class="form-control" formControlName="commentaire" placeholder="Saisir un commentaire si souhaité" ngModel >
+            </div>
+        <button class="btn btn-primary" type="submit" [disabled]="dataCreateAffectation.invalid">Enregistrer</button>
+      </form>
+    </div>
+  </div>

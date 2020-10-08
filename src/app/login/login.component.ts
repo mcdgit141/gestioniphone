@@ -32,7 +32,7 @@ export class LoginComponent {
 	soumissionLogin(credentials) {
 		console.log("soumissionLogin",credentials.value);
 		this.serviceLogin.authentification(credentials.value);
-
+		
 	}
 	
 }
