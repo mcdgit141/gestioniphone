@@ -15,6 +15,7 @@ import { AffectationsSuppressionComponent } from './container/affectations-conta
 import { UtilisateursFormComponent } from './container/utilisateurs-container/utilisateurs-form/utilisateurs-form.component';
 import { SidebarComponent } from './container/sidebar/sidebar.component';
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
+import { ContainerComponent } from './container/container.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
     AffectationsListeComponent,
     AffectationsSuppressionComponent,
     UtilisateursFormComponent,
-    SidebarComponent
+    SidebarComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,

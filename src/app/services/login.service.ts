@@ -19,7 +19,7 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   async authentification(credentials) {
-     await this.http.post(this.API+"/authenticate",credentials)
+     await this.http.post("http://localhost:9095/authenticate",credentials)
     .toPromise().then((response:any) => {
       this.setToken(response.jwtToken);
       this.roles=response.authorities;
