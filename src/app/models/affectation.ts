@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 
-export class Affectation {
+export interface Affectation {
     uid: string;
-    numserieiphone: string;
+    modeleiphone: string;
     dateaffectation: Date;
     commentaire: string;
 }

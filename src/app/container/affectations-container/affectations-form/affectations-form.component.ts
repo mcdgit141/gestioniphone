@@ -17,7 +17,7 @@ export class AffectationsFormComponent implements OnInit {
     this.dataCreateAffectation = this.fb.group(
 			{
 				uid: ['', Validators.required, Validators.maxLength(6)] ,
-        numserieiphone: ['', Validators.required,Validators.maxLength(20)],
+        modeleiphone: ['', Validators.required,Validators.maxLength(20)],
         dateaffectation:['', Validators.required],
         commentaire:''
       } )
