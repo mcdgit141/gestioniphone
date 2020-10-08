@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-gestiphone',
@@ -9,13 +10,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'gestioniphone';
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private loginService:LoginService) {
 
   }
 
   logOut(ev) {
     ev.preventDefault();
-    localStorage.clear();
+    this.loginService.logout();
+   //  localStorage.clear();
     this.router.navigate(["/"]);
   }
 }

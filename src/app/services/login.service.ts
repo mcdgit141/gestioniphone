@@ -25,17 +25,17 @@ export class LoginService {
     .toPromise().then((response:any) => {
       this.setToken(response.jwtToken);
       this.roles=response.authorities;
-      console.log(" response.authorities : " + response.authorities + "-" + typeof response.authorities);
-      console.log(" response.authorities : " + response.authorities.values + "-" + typeof response.authorities);
-      console.log(" this.roles : "  + this.roles + "-" + typeof this.roles); 
-      console.log(" this.roles : "  + this.roles.values + "-" + typeof this.roles); 
+      // console.log(" response.authorities : " + response.authorities + "-" + typeof response.authorities);
+      // console.log(" response.authorities : " + response.authorities.values + "-" + typeof response.authorities);
+      // console.log(" this.roles : "  + this.roles + "-" + typeof this.roles); 
+      // console.log(" this.roles : "  + this.roles.values + "-" + typeof this.roles); 
       // let truc;
       
       this.setRoles(response.authorities);
       this.setUser(credentials.username);
-      console.log("credentials : ");
-      console.log(credentials);
-      console.log(credentials.username);
+      // console.log("credentials : ");
+      // console.log(credentials);
+      // console.log(credentials.username);
       
       this.isLoggedIn=true;
     });
@@ -47,6 +47,16 @@ export class LoginService {
    //  console.log("isLoggedIn : " + this.isLoggedIn)
    //  console.log("isAmin : " + this.isAdmin);
   }
+
+   logout() {
+      localStorage.clear();
+      this.isAdmin = false;
+      this.isType1 = false;
+      this.isType2 = false;
+      this.isLoggedIn = false;
+      
+   }
+
 
   setToken(token) {
     localStorage.setItem("token",token);
@@ -114,4 +124,6 @@ export class LoginService {
       }
       return false;
    }
+
+
 }
