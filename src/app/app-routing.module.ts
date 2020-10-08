@@ -25,12 +25,12 @@ const routes: Routes = [
       {path:'', redirectTo: 'liste', pathMatch:'full'},
       {path:'gestion', redirectTo: 'liste', pathMatch:'full'},
       {path:'admin', redirectTo: 'user', pathMatch:'full'},
-      {path:'liste', component: AffectationsListeComponent},
-      {path:'cloture', component: AffectationsClotureComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
-      {path:'details', component: AffectationsDetailsComponent},
-      {path:'creation', component: AffectationsFormComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
-      {path:'suppression', component: AffectationsSuppressionComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
-      {path:'user', component: UtilisateursFormComponent}
+      {path:'liste', canActivate:[AuthGuard], component: AffectationsListeComponent},
+      {path:'cloture', canActivate:[AuthGuard], component: AffectationsClotureComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
+      {path:'details', canActivate:[AuthGuard], component: AffectationsDetailsComponent},
+      {path:'creation', canActivate:[AuthGuard], component: AffectationsFormComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
+      {path:'suppression', canActivate:[AuthGuard], component: AffectationsSuppressionComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
+      {path:'user', canActivate:[AuthGuard], component: UtilisateursFormComponent}
 
     ] 
   }

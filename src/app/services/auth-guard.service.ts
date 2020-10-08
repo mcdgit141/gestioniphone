@@ -35,21 +35,10 @@ export class AuthGuard implements CanActivate {
    
    checkRights(route):boolean {
       
-      console.log("checkRights - route : ");
-      console.log(route);
-      console.log("checkRights - route.data : ");
-      console.log(route.data);
-      console.log("checkRights - route.data.valuesof : ");
-      console.log(route.data.valueOf());
-      
       
       let roles:[] = route.data['roles'];
       let hasRights = true;
 
-      console.log("checkRights - roles :");
-      console.log(roles);
-
-      
       
       if (roles) {
          hasRights = this.loginService.hasAnyRole(roles);
