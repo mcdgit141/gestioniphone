@@ -39,7 +39,7 @@ export class LoginService {
   }
 
   getToken() {
-    localStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 
 }
