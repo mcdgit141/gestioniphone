@@ -1,8 +1,8 @@
 import { Collaborateur } from './collaborateur';
 import { Iphone } from './iphone';
 
-export interface Affectation {
-    numeroAffectationn:string;
+export interface Affectation  {
+    numeroAffectation:string;
     dateAffectation:Date;
     dateRenouvellementPrevue:Date;
     dateFin:Date;
@@ -10,5 +10,9 @@ export interface Affectation {
     motifFin:string;
     collaborateur:Collaborateur;
     iphone:Iphone;
+
+   // constructor(numerotationAffectation: string,  ){
+   //     this.numeroAffectation = numeroAffectation
+  //  };
        
 }

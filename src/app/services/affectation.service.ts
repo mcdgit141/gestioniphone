@@ -8,16 +8,15 @@ import { environment } from 'src/environments/environment';
 export class AffectationService {
 
   private API=environment.API_URL;
-  authService: any;
-
-  constructor(private http:HttpClient) { }
   
-    async createAffectation(dataCreateAffectation) {
-    await this.http.post(this.API+"/affectation/creation",dataCreateAffectation,
-    {
-       headers: new HttpHeaders().set(
-        'Authorization', 'Bearer ' + this.authService.getTokenFromLocalStorage()
-       )
-     }).toPromise();
-    }
+  constructor(private http:HttpClient) { }
+
+    createAffectation(mesdata)  {
+      console.log("mesdatadansservicecreation--" + mesdata);
+      return this.http.post(this.API+"/affectation/creation",mesdata);
+
+      // await this.http.post(this.API+"/affectation/creation",mesdata).toPromise().then(
+       // (response:any) => alert("affectation créée"))
+    
+      }
 }

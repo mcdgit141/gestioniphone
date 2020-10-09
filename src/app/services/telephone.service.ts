@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Iphone } from '../models/iphone';
-import { CollaborateurService } from './collaborateur.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,7 @@ export class TelephoneService {
   readonly telephone$:Observable<Iphone> = this._telephoneSubject.asObservable();
 
   rechercheModeleTel(modeleiphone:string) {
+    console.log("modeleiphone dans service--"+modeleiphone);
     return this.http.get(this.API + '/iphone/'+modeleiphone)
     .subscribe( data => {this._telephoneSubject.next(data);} )
   }
