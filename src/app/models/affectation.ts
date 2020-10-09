@@ -2,12 +2,12 @@ import { Collaborateur } from './collaborateur';
 import { Iphone } from './iphone';
 
 export interface Affectation {
-    numeroaffectation:string;
-    dateaffectation:Date;
-    daterenouvellement:Date;
-    datefin:Date;
+    numeroAffectationn:string;
+    dateAffectation:Date;
+    dateRenouvellementPrevue:Date;
+    dateFin:Date;
     commentaire:string;
-    motiffin:string;
+    motifFin:string;
     collaborateur:Collaborateur;
     iphone:Iphone;
        
