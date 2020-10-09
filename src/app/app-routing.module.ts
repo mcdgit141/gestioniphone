@@ -10,6 +10,7 @@ import { UtilisateursFormComponent } from './container/utilisateurs-container/ut
 import { AffectationsSuppressionComponent } from './container/affectations-container/affectations-suppression/affectations-suppression.component';
 import { AffectationsDetailsComponent } from './container/affectations-container/affectations-details/affectations-details.component';
 import { AffectationsClotureComponent } from './container/affectations-container/affectations-cloture/affectations-cloture.component';
+import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
 
 const routes: Routes = [
 
@@ -24,13 +25,14 @@ const routes: Routes = [
     children : [
       {path:'', redirectTo: 'liste', pathMatch:'full'},
       {path:'gestion', redirectTo: 'liste', pathMatch:'full'},
-      {path:'admin', redirectTo: 'user', pathMatch:'full'},
+      {path:'admin', redirectTo: 'createUser', pathMatch:'full'},
       {path:'liste', canActivate:[AuthGuard], component: AffectationsListeComponent},
       {path:'cloture', canActivate:[AuthGuard], component: AffectationsClotureComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'details', canActivate:[AuthGuard], component: AffectationsDetailsComponent},
       {path:'creation', canActivate:[AuthGuard], component: AffectationsFormComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'suppression', canActivate:[AuthGuard], component: AffectationsSuppressionComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
-      {path:'user', canActivate:[AuthGuard], component: UtilisateursFormComponent}
+      {path:'createUser', canActivate:[AuthGuard], component: UtilisateursFormComponent},
+      {path:'deleteUser', canActivate:[AuthGuard], component: UtilisateurDeleteComponent}
 
     ] 
   }
