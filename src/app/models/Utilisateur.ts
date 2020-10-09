@@ -3,5 +3,5 @@ export interface Utilisateur{
     password:string,
     roleUtilisateur:string,
     uid:string,
-    username:string
+    login:string
 }
