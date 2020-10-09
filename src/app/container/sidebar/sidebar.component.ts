@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  isAdmin:boolean;
+  isType1:boolean;
+
+  constructor(private loginService:LoginService) { 
+    this.isAdmin=this.loginService.isAdmin;
+  }
 
   ngOnInit(): void {
+     this.isType1=this.loginService.isType2;
   }
+
 
 }

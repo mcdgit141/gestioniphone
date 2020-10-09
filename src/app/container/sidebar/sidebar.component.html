@@ -1,1 +1,19 @@
-<p>sidebar works!</p>
+<div class="vh-100" >
+
+    <h3>Actions</h3>
+
+    <h4>Affectation</h4>
+    <ul>
+        <li><a routerLink="/container/liste" class="nav-link" href="#">Liste</a></li>
+        <li><a *ngIf="isAdmin || isType1" routerLink="/container/creation" class="nav-link" href="#">Création</a></li>
+    </ul>
+
+    <div *ngIf="isAdmin">
+        <h4>Administration</h4>
+        <ul>
+            <li><a routerLink="/container/user" class="nav-link" href="#">Habiliter utilisateur</a></li>
+
+        </ul>
+    </div>
+
+</div>
