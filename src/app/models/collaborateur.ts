@@ -5,8 +5,8 @@ export interface Collaborateur {
     uid:string;
     nom:string;
     prenom:string;
-    numeroligne:string;
+    numeroLigne:string;
     uo:Uo;
-    site:Site;
+    
     
 }

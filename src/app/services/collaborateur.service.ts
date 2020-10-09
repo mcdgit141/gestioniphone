@@ -13,15 +13,22 @@ export class CollaborateurService {
 
   constructor(private http:HttpClient) { }
 
-
   private _collaborateurSubject:BehaviorSubject<any> = new BehaviorSubject([]);
-  readonly collaborateur$:Observable<CollaborateurService> = this._collaborateurSubject.asObservable();
+  readonly collaborateur$:Observable<Collaborateur> = this._collaborateurSubject.asObservable();
 
+ // rechercheUid(uid:string) {
+ //     return this.http.get(this.API + '/collaborateur/listeuid/'+uid).pipe().toPromise()
+ //  .then( (data:Collaborateur) => {
+ //  this._collaborateurSubject.next(data);
+  //      
+  //   })
+ // }
   rechercheUid(uid:string) {
-       return this.http.get(this.API + '/collaborateur/listeuid/'+uid).pipe().toPromise()
-    .then( (data:Collaborateur) => {
-      this._collaborateurSubject.next(data);
-          
-      })
+    console.log("uid",uid);
+   return this.http.get(this.API + '/collaborateur/listeuid/'+uid)
+   .subscribe( data => {this._collaborateurSubject.next(data);
+  } )
   }
-}
+   
+  }
+
