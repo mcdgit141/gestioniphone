@@ -12,22 +12,12 @@
 
             <select formControlName="roleUtilisateur" class="form-control" #roleU>
                 <option selected>Choisir un role...</option>
-                <option value="TYPE1" *ngFor="let role of rolesPossible">{{ role }}</option>
+                <option *ngFor="let role of rolesPossible">{{ role }}</option>
             </select>
             <dl id="definition_list">
-                <div class="d-flex justify-content-left">
-                    <dt>TYPE1: </dt>
-                    <dd>Consultation des affectations</dd>
-                </div>
-
-                <div class="d-flex justify-content-left">
-                    <dt>TYPE2: </dt>
-                    <dd>Consultation, Ajout, Modification, Suppression des affectaions</dd>
-                </div>
-
-                <div class="d-flex justify-content-left">
-                    <dt>ADMIN: </dt>
-                    <dd>Consultation, Ajout, Modification, Suppression des affectations et gestion des utilisateurs</dd>
+                <div class="d-flex justify-content-left" *ngFor="let libelle of libelleRole">
+                    <dt>{{libelle.substring(0,6)}} </dt>
+                    <dd>{{ libelle.substring(7) }}</dd>
                 </div>
             </dl>
         </div>

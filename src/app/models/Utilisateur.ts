@@ -1,7 +1,8 @@
 export interface Utilisateur{
-    mdp:string,
     password:string,
-    roleUtilisateur:string,
+    userRole:string,
     uid:string,
-    login:string
+    login:string,
+    nom:string,
+    prenom:string
 }

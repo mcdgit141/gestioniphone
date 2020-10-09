@@ -13,7 +13,8 @@ import { UtilisateurService } from 'src/app/services/utilisateur.service';
 export class UtilisateursFormComponent implements OnInit {
   
   utilisateur:FormGroup;
-  rolesPossible:Array<string> = Object.values(RoleUtilisateur);
+  rolesPossible:Array<string> = Object.keys(RoleUtilisateur);
+  libelleRole:Array<String> = Object.values(RoleUtilisateur);
 
   constructor(private fb:FormBuilder, 
             private utilisateurService:UtilisateurService) { 
@@ -32,7 +33,7 @@ export class UtilisateursFormComponent implements OnInit {
 
   creerUtilisateur(utilisateur) {
     this.utilisateurService.habiliterUtilisateur(utilisateur.value).then(
-      () => this.utilisateur.reset()
+      () => this.utilisateurService.resetUtilisateurSubject()
     )
   }
 }
