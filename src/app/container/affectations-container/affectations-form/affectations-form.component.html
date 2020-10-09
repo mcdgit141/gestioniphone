@@ -1,27 +1,49 @@
 <div class="row">
+  <div class="col-sm-8 col-sm-offset-2 justify-center">
+    <h1>Création d'une affectation</h1>
+  </div>
     <div class="col-sm-8 col-sm-offset-2">
       <form (ngSubmit)="soumissionAffectation(dataCreateAffectation)"  [formGroup]="dataCreateAffectation" >
+      
         <div class="form-group">
-          <label for="uid">
-            Uid du collaborateur
+          <label for="uid"><strong>UID du collaborateur</strong>          
           </label>
-          <input type="text" id="uid" class="form-control" formControlName="uid"  placeholder="Saisir UID" required maxlength="06" ngModel>
+          <input type="text" #uid (click)="rechercheEnBase(uid.value)" class="form-control" formControlName="uid"  placeholder="Saisir UID" required maxlength="6" ngModel>
+              <div *ngIf="collaborateur$ | async as collabdata">
+              <!-- <span *ngIf="collaborateur$ | async as collabdata"> nom : {{ collabdata.nom }} </span> -->
+              <!-- <span *ngIf="collaborateur$ | async as collabdata"> prenom: {{ collabdata.prenom }} </span> -->
+              <span > nom : {{ collabdata.nom }} </span>
+              <span > prenom: {{ collabdata.prenom }} </span>
+              </div>
+          
         </div>
           <div class="form-group">
-          <label for="modeleiphone">
-            Modele Iphone
+          <label for="modeleiphone"><strong> Modele Iphone</strong>
+           
           </label>
-          <input type="text" id="modeleiphone" class="form-control" formControlName="modeleiphone"  placeholder="Saisir numéro série Iphone" required maxlength="20" ngModel>
+          <!-- <input type="text" id="modeleiphone" class="form-control" formControlName="modeleiphone"  placeholder="Saisir numéro série Iphone" required maxlength="20" ngModel> -->
+          <select id="modeleiphone" class="form-control" name="modeleiphone" formControlName="modeleiphone" placeholder="Saisir numéro série Iphone" required  ngModel>
+            <option value="Iphone8">Iphone8</option>
+            <option value="Iphone9">Iphone9</option>
+            <option value="Iphone10">Iphone10</option>
+            <option value="Iphone11">Iphone11</option>
+          </select>
+        </div>
+        
+        <div >
+          <span *ngIf="collaborateur$ | async as collabdata"> numéro de série : {{ collabdata.nom }} </span>
+          <span *ngIf="collaborateur$ | async as collabdata"> : {{ collabdata.prenom }} </span>
+          
         </div>
         <div class="form-group">
-        <label for="dateaffectation">
-            Date Affectation
+        <label for="dateaffectation"><strong>Date Affectation</strong>
+            
         </label>
         <input type="date" id="dateaffectation" class="form-control" formControlName="dateaffectation" placeholder="Saisir la date d'affectation" required  ngModel="dateaffectation | date:'yyyy-MM-dd'" >
         </div>
         <div class="form-group">
-            <label for="Commentaire">
-                Commentaire
+            <label for="Commentaire"><strong>Commentaire</strong>
+               
             </label>
             <input type="text" id="commentaire" class="form-control" formControlName="commentaire" placeholder="Saisir un commentaire si souhaité" ngModel >
             </div>

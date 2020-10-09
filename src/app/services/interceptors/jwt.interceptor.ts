@@ -15,10 +15,15 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private loginService:LoginService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log("interceptor");
     let clonedRequest=request
+    
     if (request.url.includes(environment.API_URL)) {
-      clonedRequest=request.clone();
-      clonedRequest.headers.set("Authorization","Bearer "+this.loginService.getToken());
+      clonedRequest = request.clone(
+        {
+        headers : request.headers.set('Authorization', 'Bearer '+ this.loginService.getToken()
+        )}
+      )
     }
     
     return next.handle(clonedRequest);
