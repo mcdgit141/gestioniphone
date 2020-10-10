@@ -35,11 +35,11 @@ export class AffectationsListeComponent implements OnInit {
       this.affectationService.getAffectations();
    }
 
-
-   closeAffectationAction(event, numeroAffectation) {
-      this.router.navigate(['container/cloture', numeroAffectation]);
+   showDetail(event, numeroAffectation) {
+      this.router.navigate(['container/details', numeroAffectation]);
    }
-
-
+   //closeAffectationAction(event, numeroAffectation) {
+     // this.router.navigate(['container/cloture', numeroAffectation]);
+   //}
 
 }
