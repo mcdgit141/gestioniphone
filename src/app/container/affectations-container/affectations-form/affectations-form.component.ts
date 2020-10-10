@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { stringify } from 'querystring';
 import { Observable, Subscription } from 'rxjs';
 import { Affectation } from 'src/app/models/affectation';
@@ -42,32 +42,40 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
     //this.collaborateur$ = this.serviceCollaborateur.collaborateur$;
     
-    this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
-    this.collaborateur = data 
-     this.collaborateurRecupere=true
-    });
+   //  this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
+   //  console.log("ngonInit dans subscribe collab", data);
+    
+   //    this.collaborateur = data 
+   //   this.collaborateurRecupere=true
+   //  });
 
-    this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
-      this.telephone = data 
-      this.telephoneRecupere=true
-    });
+   //  this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
+   //    this.telephone = data 
+   //    this.telephoneRecupere=true
+   //  });
 
     this.dataCreateAffectation = this.fb.group(
 			{
-				uid: ['', Validators.required, Validators.maxLength(6)] ,
+				uid: new FormControl('', Validators.compose( [Validators.required, Validators.maxLength(6)])) ,
         modeleiphone: ['', Validators.required],
         dateaffectation:['', Validators.required],
-        numeroligne:['',Validators.required, Validators.maxLength(10),Validators.minLength(10)],
+      //   numeroligne:['',Validators.compose([Validators.required, Validators.maxLength(10),Validators.minLength(10))]],
+        numeroligne: new FormControl('', Validators.compose( [ Validators.minLength(10), Validators.maxLength(10), Validators.required])),
         commentaire:['',Validators.required]
         
       } );
   
   }
   ngOnDestroy(): void{
+     console.log("Ondestroy");
+     this.collaborateurRecupere = false;
+     
     this.subsCollaborateur.unsubscribe();
+   //  this.subsCollaborateur.
     this.subsTelephone.unsubscribe();
 
   }
+
   creationAffectation(dataCreateAffectation){
 
     console.log("soumissionAffectationdatacreateaffectation",dataCreateAffectation.value);
@@ -89,15 +97,30 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
     this.serviceAffectation.createAffectation(mesdata);
   }
-   rechercheEnBase(uid:string){
+
+   rechercheEnBase(event:Event, uid:string){
+      event.preventDefault();
+      console.log(typeof(event));
+      
     console.log("recherche uid dans le ts");
+    this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
+      this.collaborateur = data 
+       this.collaborateurRecupere=true
+       console.log("this.collaborateurRecupere=true");
+       
+      });
     this.serviceCollaborateur.rechercheUid(uid);
   }
 
     rechercheEnBaseTel(modeleiphone:string) {
     console.log("modeleiphone" + modeleiphone);
-    
-    this.serviceTelephone.rechercheModeleTel(modeleiphone);
+   //  event.preventDefault();
+   if (modeleiphone) {
+    this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
+      this.telephone = data 
+      this.telephoneRecupere=true
+    });
+    this.serviceTelephone.rechercheModeleTel(modeleiphone);}
 
   }
   
