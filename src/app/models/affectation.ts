@@ -1,7 +1,7 @@
 import { Collaborateur } from './collaborateur';
 import { Iphone } from './iphone';
 
-export interface Affectation  {
+export interface Affectation {
     numeroAffectation:string;
     dateAffectation:Date;
     dateRenouvellementPrevue:Date;
