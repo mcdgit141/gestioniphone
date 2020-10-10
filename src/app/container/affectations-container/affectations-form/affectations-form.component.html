@@ -10,7 +10,7 @@
           <!-- <input type="text" #uid (click)="rechercheEnBase(uid.value)" class="form-control" formControlName="uid"  placeholder="Saisir UID" required maxlength="6" ngModel> -->
             <input type="text" #uid class="form-control" formControlName="uid"  placeholder="Saisir UID" required maxlength="6" ngModel>
                   <div class="input-group-prepend">
-                      <button class="btn btn-primary" (click)="rechercheEnBase(uid.value)">Rechercher le collaborateur</button>
+                      <button class="btn btn-primary" (click)="rechercheEnBase($event, uid.value)">Rechercher le collaborateur</button>
                   </div>
                   <div *ngIf="collaborateurRecupere === true">
                     <span *ngIf="collaborateurRecupere === true"> nom : {{ collaborateur.nom }} </span>
