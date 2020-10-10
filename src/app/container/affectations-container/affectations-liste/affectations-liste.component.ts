@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Affectation } from 'src/app/models/affectation';
 import { AffectationService } from 'src/app/services/affectation.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -15,7 +16,7 @@ export class AffectationsListeComponent implements OnInit {
    isType2:boolean;
    loading:boolean;  
 
-  constructor(private affectationService:AffectationService, private loginService:LoginService) { }
+  constructor(private affectationService:AffectationService, private loginService:LoginService, private router:Router) { }
 
    ngOnInit(): void {
       //   this.affectationService.getAffectations().subscribe (
@@ -35,6 +36,9 @@ export class AffectationsListeComponent implements OnInit {
    }
 
 
+   closeAffectationAction(event, numeroAffectation) {
+      this.router.navigate(['container/cloture', numeroAffectation]);
+   }
 
 
 
