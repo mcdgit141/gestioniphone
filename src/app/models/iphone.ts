@@ -1,8 +1,8 @@
 import { Modeleiphone } from './modeleiphone';
 
 export interface Iphone{
-    nunmeroserie:string;
-    prixiphone:number;
-    modeleiphone:Modeleiphone;
-    etatiphone:string;
+    numeroSerie:string;
+    prixIphone:number;
+    modeleIphoneDTO:Modeleiphone;
+    etatIphone:string;
 }

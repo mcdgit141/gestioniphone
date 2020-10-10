@@ -18,14 +18,14 @@ export class AffectationService {
 
   constructor(private http:HttpClient) { }
   
-    async createAffectation(dataCreateAffectation) {
-    await this.http.post(this.API+"/affectation/creation",dataCreateAffectation,
-    {
-       headers: new HttpHeaders().set(
-        'Authorization', 'Bearer ' + this.authService.getTokenFromLocalStorage()
-       )
-     }).toPromise();
-    }
+  createAffectation(mesdata)  {
+   console.log("mesdatadansservicecreation--" + mesdata);
+   return this.http.post(this.API+"/affectation/creation",mesdata);
+
+   // await this.http.post(this.API+"/affectation/creation",mesdata).toPromise().then(
+    // (response:any) => alert("affectation créée"))
+ 
+   }
 
     getAffectations() {
        console.log("getAffectations - entre");
@@ -56,5 +56,7 @@ export class AffectationService {
        
     }
 
+
+  
 
 }

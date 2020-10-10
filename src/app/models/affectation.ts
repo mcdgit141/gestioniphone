@@ -10,5 +10,9 @@ export interface Affectation {
     motifFin:string;
     collaborateur:Collaborateur;
     iphone:Iphone;
+
+   // constructor(numerotationAffectation: string,  ){
+   //     this.numeroAffectation = numeroAffectation
+  //  };
        
 }
