@@ -108,10 +108,29 @@ export class LoginService {
    }
 
    getRoles() {
-      return localStorage.getItem('roles');
+      let role:String = localStorage.getItem('roles');
+      
+      // Alimentation des booleens qui seront utilisés dans les .html
+      switch (role) {
+         case "ADMIN" : {
+            this.isAdmin = true;
+            break;
+         }
+         case "TYPE2" : {
+            this.isType2 = true;
+            break;
+         }
+         case "TYPE1" : {
+            this.isType1 = true;
+            break;
+         }
+      }
+
+
+      return role;
    }
 
-   hasAnyRole(roles: string[]) {
+   hasAnyRole(roles: String[]) {
       console.log("hasAnyRole - entre" )
       let userRole = this.getRoles();
 
