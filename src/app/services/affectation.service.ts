@@ -17,18 +17,8 @@ export class AffectationService {
    readonly affectations$:Observable<Affectation[]> = this._affectationSubject.asObservable();
 
   constructor(private http:HttpClient) { }
-  
-    getAffectations() {
-       console.log("getAffectations - entre");
-       
-       
-       let param = {};
-       console.log(this._affectationSubject);
-      //  this._affectationSubject.subscribe(
-         //  data => { if (data.length === 0) {
-         //  data =>  {
-    }
-    createAffectation(mesdata)  {
+
+  createAffectation(mesdata)  {
     //  console.log("mesdatadansservicecreation--" + formatJsonMesDatas);
       //return this.http.post(this.API+"/affectation/creation",mesdata);
 
@@ -47,5 +37,34 @@ export class AffectationService {
           console.log('Erreur ! : ' , error.status); }
         );
         }
+
+        
+    getAffectations() {
+      console.log("getAffectations - entre");
+            
+      let param = {};
+      console.log(this._affectationSubject);
+     //  this._affectationSubject.subscribe(
+        //  data => { if (data.length === 0) {
+        //  data =>  {
+
+           //  console.log("getAffectations - avant post");
+             this.http.post(this.API+"/affectation/liste",param).subscribe(
+                (data:[]) => {
+                   console.log(data);
+                 //   let affectation = data[''];
+                 //   console.log(affectation);
+                   
+                   this._affectationSubject.next(data)
+                }
+                )
+        // }
+        //  }
+     //  )
+      console.log(this._affectationSubject);
+
+      return this._affectationSubject;
+      
+   }
 
 }
