@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -12,11 +12,23 @@ export class AffectationService {
   constructor(private http:HttpClient) { }
 
     createAffectation(mesdata)  {
-      console.log("mesdatadansservicecreation--" + mesdata);
-      return this.http.post(this.API+"/affectation/creation",mesdata);
+    //  console.log("mesdatadansservicecreation--" + formatJsonMesDatas);
+      //return this.http.post(this.API+"/affectation/creation",mesdata);
 
-      // await this.http.post(this.API+"/affectation/creation",mesdata).toPromise().then(
-       // (response:any) => alert("affectation créée"))
-    
-      }
+      //await this.http.post(this.API+"/affectation/creation",formatJsonMesDatas).toPromise().then(
+     //  (response:any) => alert("affectation créée"))
+    //
+     // }
+
+
+      this.http.post(this.API+"/affectation/creation",mesdata)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error:HttpErrorResponse) => {
+          console.log('Erreur ! : ' , error.status); }
+        );
+        }
+
 }

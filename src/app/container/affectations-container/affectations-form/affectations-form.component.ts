@@ -72,20 +72,20 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
     console.log("soumissionAffectationdatanumeroSerie",dataCreateAffectation.value.numeroSerie);
     let mesdata = {
       collaborateur: {
-        numeroLigne: dataCreateAffectation.value.numeroligne,
-        uid: dataCreateAffectation.value.uid
+        "numeroLigne": dataCreateAffectation.value.numeroligne,
+        "uid": dataCreateAffectation.value.uid
       },
-      commentaire: dataCreateAffectation.value.commentaire,
-      dateAffectation: dataCreateAffectation.value.dateaffectation,
-      iphone: {
-        numeroSerie: this.telephone.numeroSerie
+      "commentaire": dataCreateAffectation.value.commentaire,
+      "dateAffectation": dataCreateAffectation.value.dateaffectation,
+      "iphone": {
+        "numeroSerie": this.telephone.numeroSerie
       }}
       
       //affectation: Affectation = new Affectation;
     console.log("mesdata dans creation ts---",mesdata);
-    let formatJsonMesDatas = JSON.stringify(mesdata);
+    //let formatJsonMesDatas = JSON.stringify(mesdata);
 
-    this.serviceAffectation.createAffectation(formatJsonMesDatas);
+    this.serviceAffectation.createAffectation(mesdata);
   }
   rechercheEnBase(uid:string){
     console.log("recherche uid dans le ts");
