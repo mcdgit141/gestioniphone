@@ -10,16 +10,17 @@ export class SidebarComponent implements OnInit {
 
   isAdmin:boolean;
   isType2:boolean;
-  roleUtilisateur: String;
+//   roleUtilisateur: String;
 
   constructor(private loginService:LoginService) { 
    //  this.isAdmin=this.loginService.isAdmin;
   }
 
   ngOnInit(): void {
-   let roleUtilisateur:String = this.loginService.getRoles();
-   this.isAdmin=this.loginService.isAdmin;
-     this.isType2=this.loginService.isType2;
+
+   // this.loginService.getRoles();
+   this.isAdmin = this.loginService.isItAdmin();
+   this.isType2 = this.loginService.isItType2();
   }
 
 

@@ -24,12 +24,12 @@
          <td>{{affectation.collaborateur.nom}}</td>
          <td>{{affectation.collaborateur.prenom}}</td>
          <td>{{affectation.collaborateur.uo.codeUo}}</td>
-         <td>{{affectation.collaborateur.uo.siteExercice?.nomsite}}</td>
+         <td>{{affectation.collaborateur.uo.siteExercice?.nomSite}}</td>
          <td>{{affectation.iphone.modeleIphoneDTO.nomModele}}</td>
          <td>{{affectation.dateRenouvellementPrevue}}</td>
          <td>
             <button routerLink="/container/details">Détail</button>
-             <button routerLink="/container/cloture">Cloturer</button>
+             <button *ngIf="isAdmin || isType2" (click)="closeAffectationAction($event, affectation.numeroAffectation)">Cloturer</button>
             </td>
          <td></td>
       </tr>

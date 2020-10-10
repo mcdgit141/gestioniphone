@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Affectation } from 'src/app/models/affectation';
 import { AffectationService } from 'src/app/services/affectation.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-affectations-liste',
@@ -10,32 +12,34 @@ import { AffectationService } from 'src/app/services/affectation.service';
 export class AffectationsListeComponent implements OnInit {
 
    listAffectations:Array<Affectation> = []; 
+   isAdmin:boolean;
+   isType2:boolean;
+   loading:boolean;  
 
-   loading:boolean      
+  constructor(private affectationService:AffectationService, private loginService:LoginService, private router:Router) { }
 
-  constructor(private affectationService:AffectationService) { }
+   ngOnInit(): void {
+      //   this.affectationService.getAffectations().subscribe (
 
-  ngOnInit(): void {
-   //   this.affectationService.getAffectations().subscribe (
-     this.loading = true;
-      this.affectationService.affectations$.subscribe (
-        data => {
-           this.listAffectations= data;
-           this.loading = false;
-         //   data.forEach( (affectation:Affectation) => {console.log(affectation.numeroAffectation)
-                  // console.log(affectation.motifFin);
-                  // console.log(affectation.commentaire);
-                  // console.log(affectation.dateAffectation);
-                  // console.log(affectation.dateFin);
-                  // console.log(affectation.dateRenouvellementPrevue);
-                  // console.log(affectation.iphone);
-                  // console.log(affectation.collaborateur);
-               // }
-         //   )
-        }
-     )
+      this.isAdmin = this.loginService.isItAdmin();
+      this.isType2 = this.loginService.isItType2();
+
+      this.loading = true;
+      this.affectationService.affectations$.subscribe(
+         data => {
+            this.listAffectations = data;
+            this.loading = false;
+         }
+      )
 
       this.affectationService.getAffectations();
-  }
+   }
+
+
+   closeAffectationAction(event, numeroAffectation) {
+      this.router.navigate(['container/cloture', numeroAffectation]);
+   }
+
+
 
 }

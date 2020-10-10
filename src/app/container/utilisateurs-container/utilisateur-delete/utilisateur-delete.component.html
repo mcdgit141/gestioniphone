@@ -1,34 +1,51 @@
-<div class="container">
+<div class="container" *ngIf="!userToDeleteFound">
 
     <h2>Suprimer un utilisateur</h2>
-    <!-- <div class="row">
-        <form (ngSubmit)="supprimerUtilisateur(uid.value)" [formGroup]="" class="d-flex">
-            <div class="form-goup">
-                <label>UID du collaborateur</label>
-                <input #uid  name="uid" class="form-control" type="text" placeholder="Saisir UID" maxlength="6" />
-                <button class="btn btn-danger btn-sm" type="submit">Envoyer</button>
-            </div>
-    
-            <div>
-                
-            </div>
-        </form>
-    </div> -->
-
-    <dl>
-
-            <dt id="alerte"> Attention : </dt>
-            <dd>Toute suppression est définitive !</dd>
-  
-
-    </dl>
 
     <div class="input-group mb-3">
 
-
         <input #uid class="form-control" type="text" placeholder="Saisir UID" maxlength="6" />
         <div class="input-group-prepend">
-            <button class="btn btn-danger" type="submit" (click)="supprimerUtilisateur(uid.value)">Supprimer</button>
+            <button class="btn btn-danger" type="submit" (click)="demanderSuppression(uid.value)">Supprimer</button>
         </div>
     </div>
+</div>
+
+<div class="container" *ngIf="userToDeleteFound">
+    <h1>Utilisateur A Supprimer</h1>
+    <form (ngSubmit)="confirmerSuppression(confirmationForm.value.uid)" [formGroup]="confirmationForm">
+        <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >{{attribute}}</label>
+            <input formControlName="{{attribute}}" class="form-control" type="text"/>
+        </div>
+        <!-- <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >UID collaborateur</label>
+            <input formControlName="uid" class="form-control" type="text"/>
+        </div>
+        <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >Nom collaborateur</label>
+            <input formControlName="nom" class="form-control" type="text"/>
+        </div>
+        <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >Prenom collaborateur</label>
+            <input formControlName="prenom" class="form-control" type="text"/>
+        </div>
+        <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >Login utilisateur</label>
+            <input formControlName="login" class="form-control" type="text"/>
+        </div>
+        <div class="form-goup" *ngFor="let attribute of utilisateurAttributes">
+            <label >Role utilisateur</label>
+            <input formControlName="userRole" class="form-control" type="text"/>
+        </div> -->
+
+
+        <dl>
+            <dt id="alerte"> Attention : </dt>
+            <dd>Toute suppression est définitive !</dd>
+    </dl>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-danger" type="submit">Confirmer la suppression</button>
+        </div>
+    </form>
 </div>
