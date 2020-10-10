@@ -1,6 +1,6 @@
 export interface Utilisateur{
     password:string,
-    userRole:string,
+    roleUtilisateur:string,
     uid:string,
     login:string,
     nom:string,

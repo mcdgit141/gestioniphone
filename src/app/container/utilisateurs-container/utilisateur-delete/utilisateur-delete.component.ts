@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Utilisateur } from 'src/app/models/Utilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 
@@ -15,7 +16,7 @@ export class UtilisateurDeleteComponent implements OnInit {
   confirmationForm:FormGroup;
   utilisateurAttributes:Array<string>;
 
-  constructor(public utilisateurService:UtilisateurService, private fb:FormBuilder) { }
+  constructor(public utilisateurService:UtilisateurService, private fb:FormBuilder, private route:Router) { }
 
   ngOnInit(): void {
    this.confirmationForm=this.fb.group(
@@ -25,7 +26,7 @@ export class UtilisateurDeleteComponent implements OnInit {
       nom:[""],
       prenom:[""],
       login:[""],
-      userRole: [""],
+      roleUtilisateur: [""],
       password:["**********"]
     }
    )
@@ -54,7 +55,7 @@ export class UtilisateurDeleteComponent implements OnInit {
     this.confirmationForm.controls.nom.setValue(this.utilisateurTrouve.nom);
     this.confirmationForm.controls.prenom.setValue(this.utilisateurTrouve.prenom);
     this.confirmationForm.controls.login.setValue(this.utilisateurTrouve.login);
-    this.confirmationForm.controls.userRole.setValue(this.utilisateurTrouve.userRole);
+    this.confirmationForm.controls.roleUtilisateur.setValue(this.utilisateurTrouve.roleUtilisateur.substring(5));
 
   }
 
@@ -62,6 +63,12 @@ export class UtilisateurDeleteComponent implements OnInit {
     //faire un prompt pour demander à resaisir le mdp, et comparé la valeur saisi avec le mdp contenu dans le token.
     console.log("je supprime l'utilisateur", uid)
           // this.utilisateurService.deleteUser(uid);
+          if (confirm("Supprimer un autre utilisateur?")){
+            this.userToDeleteFound=false;
+          } else {
+            this.route.navigate(["/home"])
+          }
+          
   }
 
 }
