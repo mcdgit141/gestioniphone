@@ -29,7 +29,7 @@
          <td>{{affectation.dateRenouvellementPrevue}}</td>
          <td>
             <button routerLink="/container/details">Détail</button>
-             <button routerLink="/container/cloture">Cloturer</button>
+             <button *ngIf="isAdmin || isType2" routerLink="/container/cloture">Cloturer</button>
             </td>
          <td></td>
       </tr>
