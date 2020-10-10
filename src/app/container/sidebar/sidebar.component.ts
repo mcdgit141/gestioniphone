@@ -9,14 +9,14 @@ import { LoginService } from 'src/app/services/login.service';
 export class SidebarComponent implements OnInit {
 
   isAdmin:boolean;
-  isType1:boolean;
+  isType2:boolean;
 
   constructor(private loginService:LoginService) { 
     this.isAdmin=this.loginService.isAdmin;
   }
 
   ngOnInit(): void {
-     this.isType1=this.loginService.isType2;
+     this.isType2=this.loginService.isType2;
   }
 
 
