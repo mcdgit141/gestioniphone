@@ -18,6 +18,6 @@ export class AppComponent {
     ev.preventDefault();
     this.loginService.logout();
    //  localStorage.clear();
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 }

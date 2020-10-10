@@ -144,5 +144,13 @@ export class LoginService {
       return false;
    }
 
+   isItAdmin() {
+      return this.hasAnyRole(['ADMIN']);
+   }
+
+   isItType2() {
+      return this.hasAnyRole(['TYPE2']);
+   }
+
 
 }

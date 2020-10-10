@@ -1,6 +1,6 @@
 export interface Site{
     codesite:string;
-    nomsite:string;
+    nomSite:string;
     adressepostale:string;
     codepostal:string;
     ville:string;
