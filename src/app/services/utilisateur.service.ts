@@ -10,14 +10,14 @@ import { Utilisateur } from '../models/Utilisateur';
 export class UtilisateurService {
 
 private _utilisateur:BehaviorSubject<any> = new BehaviorSubject({});
-// public utilisateur$:Observable<Utilisateur>  = this._utilisateur.asObservable(); 
+public utilisateurASupprimer$:Observable<Utilisateur>  = this._utilisateur.asObservable(); 
 
   constructor(private http:HttpClient) { }
 
 
   async habiliterUtilisateur(body){
     await this.http.post(environment.API_URL+"/utilisateur/create",body).toPromise().then(
-      (response:any) => alert("utilisateur Habilité")
+      (response:any) => alert("utilisateur créé")
     )
   }
 
@@ -25,6 +25,7 @@ private _utilisateur:BehaviorSubject<any> = new BehaviorSubject({});
     await this.http.get(environment.API_URL+"/utilisateur/retrieve/"+uid).toPromise().then(
       
       (reponse:any) => {
+        console.log("retour du back sur retrieve user : ", reponse)
         this._utilisateur.next(reponse)
                        }
     )
@@ -38,5 +39,9 @@ private _utilisateur:BehaviorSubject<any> = new BehaviorSubject({});
 
   getUtilisateur() {
     return this._utilisateur.getValue();
+  }
+
+  resetUtilisateurSubject(){
+    this._utilisateur.next({});
   }
 }
