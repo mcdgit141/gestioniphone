@@ -22,13 +22,15 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
   collaborateur:Collaborateur;
   telephone:Iphone;
   affectation$:Observable<any>;
-  telephoneRecupere = false;
-  collaborateurRecupere = false;
+  
   
   dataCreateAffectation;
   ListeIphone=["Iphone8","Iphone9","Iphone10","Iphone11"];
   subsCollaborateur:Subscription;
   subsTelephone:Subscription;
+
+  telephoneRecupere = false;
+  collaborateurRecupere = false;
 
     constructor(private fb:FormBuilder, 
     private serviceAffectation:AffectationService,
@@ -39,10 +41,10 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     //this.collaborateur$ = this.serviceCollaborateur.collaborateur$;
-
+    
     this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
     this.collaborateur = data 
-      this.collaborateurRecupere=true
+     this.collaborateurRecupere=true
     });
 
     this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
@@ -56,7 +58,7 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
         modeleiphone: ['', Validators.required],
         dateaffectation:['', Validators.required],
         numeroligne:['',Validators.required, Validators.maxLength(10),Validators.minLength(10)],
-        commentaire:[''],
+        commentaire:['',Validators.required]
         
       } );
   
@@ -87,12 +89,12 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
     this.serviceAffectation.createAffectation(mesdata);
   }
-  rechercheEnBase(uid:string){
+   rechercheEnBase(uid:string){
     console.log("recherche uid dans le ts");
     this.serviceCollaborateur.rechercheUid(uid);
   }
 
-  rechercheEnBaseTel(modeleiphone:string) {
+    rechercheEnBaseTel(modeleiphone:string) {
     console.log("modeleiphone" + modeleiphone);
     
     this.serviceTelephone.rechercheModeleTel(modeleiphone);
