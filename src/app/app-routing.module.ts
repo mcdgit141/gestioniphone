@@ -31,8 +31,8 @@ const routes: Routes = [
       {path:'details', canActivate:[AuthGuard], component: AffectationsDetailsComponent},
       {path:'creation', canActivate:[AuthGuard], component: AffectationsFormComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'suppression', canActivate:[AuthGuard], component: AffectationsSuppressionComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
-      {path:'createUser', canActivate:[AuthGuard], component: UtilisateursFormComponent},
-      {path:'deleteUser', canActivate:[AuthGuard], component: UtilisateurDeleteComponent}
+      {path:'createUser', canActivate:[AuthGuard], component: UtilisateursFormComponent, data: {roles: ['ADMIN']  }},
+      {path:'deleteUser', canActivate:[AuthGuard], component: UtilisateurDeleteComponent, data: {roles: ['ADMIN']  }}
 
     ] 
   }
