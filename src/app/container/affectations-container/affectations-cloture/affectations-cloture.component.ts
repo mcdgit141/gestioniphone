@@ -1,4 +1,10 @@
+import { ValueTransformer } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder,FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { MotifFin } from 'src/app/models/motiffin';
+import { AffectationService } from 'src/app/services/affectation.service';
 
 @Component({
   selector: 'app-affectations-cloture',
@@ -7,9 +13,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AffectationsClotureComponent implements OnInit {
 
-  constructor() { }
+affectation$:Observable<any>;
+dataClotureAffectation:FormGroup;
+motifTrouve:Array<string> = Object.values(MotifFin);
+
+numeroAffectationRecu;
+
+  constructor(private fb:FormBuilder,private serviceAffectation:AffectationService,private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+     this.numeroAffectationRecu = params.get("numeroAffectation");
+     console.log("dans detail affectation--numeroAffectation",this.numeroAffectationRecu);
+           
+      })
+
+    this.dataClotureAffectation = this.fb.group(
+			{
+        commentaire:['',Validators.required],
+        motifFin: ['', Validators.required],
+        datecloture:['', Validators.required],
+                
+      } );
+      
+     
+  } // fin du ngOnInit
+
+  clotureAffectation(dataClotureAffectation){
+    
+    console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataClotureAffectation);
+    let mesdatacloture = 
+      {
+        numeroAffectation : this.numeroAffectationRecu, 
+        commentaire : dataClotureAffectation.commentaire, 
+        motifFin : dataClotureAffectation.motifFin,
+        datecloture : dataClotureAffectation.datecloture
+      }
+    
+    console.log("dans le ts clôture Affectation", mesdatacloture);
+
+    if(confirm('Voulez-vous vraiment clôturer? ' )) { 
+     
+      this.serviceAffectation.cloturerAffectation(mesdatacloture);  
+    }
+     
   }
 
 }
+

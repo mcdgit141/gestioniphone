@@ -66,5 +66,31 @@ export class AffectationService {
       return this._affectationSubject;
       
    }
+   cloturerAffectation(dataClotureAffectation)  {
+    
+    console.log("dans cloturerAffectation--dataCloturerAffectation---", dataClotureAffectation);
+    
+    this.http.put(this.API+"/affectation/cloture",dataClotureAffectation)
+      .subscribe(
+        () => {
+          console.log('clôture effectuée !');
+        },
+        (error:HttpErrorResponse) => {
+          console.log('Erreur sur la clôture ! : ' , error.status); }
+        );
+        }
+
+    deleteAffectation(numeroAffectation)  {
+    
+      this.http.delete(this.API+"/affectation/suppression",numeroAffectation)
+          .subscribe(
+              () => {
+                console.log('suppression effectuée !');
+              },
+              (error:HttpErrorResponse) => {
+                console.log('Erreur sur la suppression! : ' , error.status); }
+              );
+              }
+      
 
 }

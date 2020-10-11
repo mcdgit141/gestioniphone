@@ -70,9 +70,9 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
      console.log("Ondestroy");
      this.collaborateurRecupere = false;
      
-    this.subsCollaborateur.unsubscribe();
+    //this.subsCollaborateur.unsubscribe();
    //  this.subsCollaborateur.
-    this.subsTelephone.unsubscribe();
+   // this.subsTelephone.unsubscribe();
 
   }
 
