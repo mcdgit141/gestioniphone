@@ -55,7 +55,7 @@ export class AffectationsDetailsComponent implements OnInit {
 
     deleteAffectation(event, numeroAffectation) {
       console.log("dans deleteAffectation--numero affectation" , numeroAffectation)
-      this.router.navigate(['container/delete', numeroAffectation]);
+      this.router.navigate(['container/details/delete', numeroAffectation]);
   }
  }
 

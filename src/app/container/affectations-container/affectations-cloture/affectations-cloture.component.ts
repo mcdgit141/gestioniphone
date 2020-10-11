@@ -13,7 +13,7 @@ import { AffectationService } from 'src/app/services/affectation.service';
 })
 export class AffectationsClotureComponent implements OnInit {
 
-affectation$:Observable<any>;
+
 dataClotureAffectation:FormGroup;
 motifTrouve:Array<string> = Object.values(MotifFin);
 

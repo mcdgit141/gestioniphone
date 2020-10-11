@@ -10,6 +10,7 @@ import { UtilisateursFormComponent } from './container/utilisateurs-container/ut
 import { AffectationsSuppressionComponent } from './container/affectations-container/affectations-suppression/affectations-suppression.component';
 import { AffectationsDetailsComponent } from './container/affectations-container/affectations-details/affectations-details.component';
 import { AffectationsClotureComponent } from './container/affectations-container/affectations-cloture/affectations-cloture.component';
+import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
      // {path:'cloture', canActivate:[AuthGuard], component: AffectationsClotureComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'details/:numeroAffectation', canActivate:[AuthGuard], component: AffectationsDetailsComponent},
       {path:'details/cloture/:numeroAffectation', canActivate:[AuthGuard], component: AffectationsClotureComponent},
+      {path:'details/delete/:numeroAffectation', canActivate:[AuthGuard], component: AffectationDeleteComponent},
       {path:'creation', canActivate:[AuthGuard], component: AffectationsFormComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'suppression', canActivate:[AuthGuard], component: AffectationsSuppressionComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'createUser', canActivate:[AuthGuard], component: UtilisateursFormComponent, data: {roles: ['ADMIN']  }},
