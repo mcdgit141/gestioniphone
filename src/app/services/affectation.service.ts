@@ -14,7 +14,7 @@ export class AffectationService {
   
   private _affectationSubject = new BehaviorSubject<Affectation[]>([]);
    // _affectationSubject = new BehaviorSubject<[]>([]);
-   readonly affectations$:Observable<Affectation[]> = this._affectationSubject.asObservable();
+  readonly affectations$:Observable<Affectation[]> = this._affectationSubject.asObservable();
 
   constructor(private http:HttpClient) { }
 

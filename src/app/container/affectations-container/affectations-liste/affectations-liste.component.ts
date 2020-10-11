@@ -36,8 +36,10 @@ export class AffectationsListeComponent implements OnInit {
    }
 
    showDetail(event, numeroAffectation) {
+      console.log("dans showDetail--numero affectation" , numeroAffectation)
       this.router.navigate(['container/details', numeroAffectation]);
    }
+
    //closeAffectationAction(event, numeroAffectation) {
      // this.router.navigate(['container/cloture', numeroAffectation]);
    //}
