@@ -62,12 +62,16 @@ export class UtilisateurDeleteComponent implements OnInit {
   confirmerSuppression(uid){
     //faire un prompt pour demander à resaisir le mdp, et comparé la valeur saisi avec le mdp contenu dans le token.
     console.log("je supprime l'utilisateur", uid)
-          // this.utilisateurService.deleteUser(uid);
-          if (confirm("Supprimer un autre utilisateur?")){
-            this.userToDeleteFound=false;
-          } else {
-            this.route.navigate(["/home"])
-          }
+          this.utilisateurService.deleteUser(uid).then(
+            (reponse:any) => {
+              if (confirm("Supprimer un autre utilisateur?")){
+                this.userToDeleteFound=false;
+              } else {
+                this.route.navigate(["/home"])
+              }
+            }
+          );
+
           
   }
 
