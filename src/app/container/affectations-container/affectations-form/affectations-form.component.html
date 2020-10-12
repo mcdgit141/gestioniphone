@@ -5,11 +5,14 @@
    <form (ngSubmit)="creationAffectation(dataCreateAffectation)" [formGroup]="dataCreateAffectation">
 
       <!-- <div class="form-group"> -->
+         <div class="form-group">
       <label for="uid"><strong>UID du collaborateur</strong>
       </label>
+      
       <input [class.isInvalid]="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.errors"
          type="text" class="form-control" formControlName="uid" placeholder="Saisir UID">
-      <div style="height: 40px;">
+      </div>
+         <div style="height: 20px;">
          <!-- <div> -->
          <div class="error"
             *ngIf="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.hasError('required')">
