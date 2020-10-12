@@ -32,6 +32,7 @@ export class AffectationService {
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
+          alert("affectation créée");
         },
         (error:HttpErrorResponse) => {
           console.log('Erreur ! : ' , error.status); }
@@ -74,6 +75,7 @@ export class AffectationService {
       .subscribe(
         () => {
           console.log('clôture effectuée !');
+          alert("affectation clôturée");
         },
         (error:HttpErrorResponse) => {
           console.log('Erreur sur la clôture ! : ' , error.status); }
@@ -98,6 +100,7 @@ export class AffectationService {
           .subscribe(
               () => {
                 console.log('suppression effectuée !');
+                alert("affectation supprimée");
               },
               (error:HttpErrorResponse) => {
                 console.log('Erreur sur la suppression! : ' , error.status); }
