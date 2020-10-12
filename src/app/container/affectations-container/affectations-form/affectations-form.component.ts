@@ -45,22 +45,25 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
     private serviceCollaborateur:CollaborateurService
     ) { }
 
+
+
+
   ngOnInit(): void {
-
-
 
     this.dataCreateAffectation = this.fb.group(
 			{
-				uid: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]) ,  //=>pas d'erreurt console
+				uid: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]) , 
         modeleiphone: new FormControl(['', Validators.required]),
         dateaffectation:['', Validators.required],
-      //   numeroligne:['',Validators.compose([Validators.required, Validators.maxLength(10),Validators.minLength(10))]],
         numeroligne: new FormControl('', Validators.compose( [ Validators.minLength(10), Validators.maxLength(10), Validators.required])),
         commentaire:['',Validators.required]
         
       } );
   
   }
+
+
+
   ngOnDestroy(): void{
      console.log("Ondestroy");
      this.collaborateurRecupere = false;
@@ -71,39 +74,45 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
   }
 
-  creationAffectation(dataCreateAffectation){
 
-    console.log("soumissionAffectationdatacreateaffectation",dataCreateAffectation.value);
-    console.log("soumissionAffectationdatanumeroSerie",dataCreateAffectation.value.numeroSerie);
-    let mesdata = {
-      collaborateur: {
-        "numeroLigne": dataCreateAffectation.value.numeroligne,
-        "uid": dataCreateAffectation.value.uid
-      },
-      "commentaire": dataCreateAffectation.value.commentaire,
-      "dateAffectation": dataCreateAffectation.value.dateaffectation,
-      "iphone": {
-        "numeroSerie": this.telephone.numeroSerie
-      }}
-      
+   creationAffectation(dataCreateAffectation) {
+
+      console.log("soumissionAffectationdatacreateaffectation", dataCreateAffectation.value);
+      console.log("soumissionAffectationdatanumeroSerie", dataCreateAffectation.value.numeroSerie);
+      let mesdata = {
+         collaborateur: {
+            "numeroLigne": dataCreateAffectation.value.numeroligne,
+            "uid": dataCreateAffectation.value.uid
+         },
+         "commentaire": dataCreateAffectation.value.commentaire,
+         "dateAffectation": dataCreateAffectation.value.dateaffectation,
+         "iphone": {
+            "numeroSerie": this.telephone.numeroSerie
+         }
+      }
+
       //affectation: Affectation = new Affectation;
-    console.log("mesdata dans creation ts---",mesdata);
-    //let formatJsonMesDatas = JSON.stringify(mesdata);
+      console.log("mesdata dans creation ts---", mesdata);
+      //let formatJsonMesDatas = JSON.stringify(mesdata);
 
-    this.serviceAffectation.createAffectation(mesdata);
-  }
+      this.serviceAffectation.createAffectation(mesdata);
+   }
 
-   rechercheEnBase(event:Event){
+
+
+   rechercheEnBase(event: Event) {
       event.preventDefault();
-       
-    this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
-      this.collaborateur = data 
-       this.collaborateurRecupere=true
-       
-      });
-    this.serviceCollaborateur.rechercheUid(this.dataCreateAffectation.value.uid);
-  }
 
+      this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
+         this.collaborateur = data
+         this.collaborateurRecupere = true
+
+      });
+      this.serviceCollaborateur.rechercheUid(this.dataCreateAffectation.value.uid);
+   }
+
+
+   
    rechercheEnBaseTel(modeleiphone: string) {
       if (this.dataCreateAffectation.value.modeleiphone) {
          this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
