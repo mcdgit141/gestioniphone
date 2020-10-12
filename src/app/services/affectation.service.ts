@@ -67,11 +67,11 @@ export class AffectationService {
       return this._affectationSubject;
       
    }
-   cloturerAffectation(dataClotureAffectation)  {
+   cloturerAffectation(mesdatacloture)  {
     
-    console.log("dans cloturerAffectation--dataCloturerAffectation---", dataClotureAffectation);
-
-    this.http.put(this.API+"/affectation/cloture",dataClotureAffectation)
+    console.log("dans cloturerAffectation--mesdatacloture*****---", mesdatacloture);
+       
+    this.http.put(this.API+"/affectation/cloture",mesdatacloture)
       .subscribe(
         () => {
           console.log('clôture effectuée !');
@@ -88,11 +88,12 @@ export class AffectationService {
       let mot1='"';
       let commentaireaenvoyer = commentaireasupprimer;
       let commentaire = mot1+commentaireaenvoyer+mot1;
-
+      let commentaire1 = commentaire.toString();
       console.log("dans supprimer affectation---commentaire ***********",commentaire);
+      console.log("dans supprimer affectation---commentaire1 en toString ***********",commentaire1);
 
       let deleteParams= new HttpParams().set("id",numeroaffectationasupprimer)
-                                        .set("commentaire",commentaire);
+                                        .set("commentaire",commentaire1);
 
      
      console.log("dans supprimer affectation---deleteParams---", deleteParams);

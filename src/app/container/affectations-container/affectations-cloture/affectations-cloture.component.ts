@@ -18,6 +18,7 @@ dataClotureAffectation:FormGroup;
 motifTrouve:Array<string> = Object.values(MotifFin);
 
 numeroAffectationRecu;
+numeroAffectationTransforme;
 
   constructor(private fb:FormBuilder,private serviceAffectation:AffectationService,private router:Router, private route:ActivatedRoute) { }
 
@@ -25,7 +26,10 @@ numeroAffectationRecu;
 
     this.route.paramMap.subscribe(params => {
      this.numeroAffectationRecu = params.get("numeroAffectation");
+
      console.log("dans detail affectation--numeroAffectation",this.numeroAffectationRecu);
+     
+     this.numeroAffectationTransforme = parseInt(this.numeroAffectationRecu, 10);
            
       })
 
@@ -33,25 +37,28 @@ numeroAffectationRecu;
 			{
         commentaire:['',Validators.required],
         motifFin: ['', Validators.required],
-        datecloture:['', Validators.required],
+        dateFin:['', Validators.required],
                 
       } );
-      
+     
      
   } // fin du ngOnInit
 
   clotureAffectation(dataClotureAffectation){
     
     console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataClotureAffectation);
+    
+    console.log("dans le ts clôture Affectation formulaire numeroAffectationTransformé", this.numeroAffectationTransforme);
+
     let mesdatacloture = 
       {
-        numeroAffectation : this.numeroAffectationRecu, 
-        commentaire : dataClotureAffectation.commentaire, 
-        motifFin : dataClotureAffectation.motifFin,
-        datecloture : dataClotureAffectation.datecloture
+        "numeroAffectation": this.numeroAffectationTransforme,
+        "commentaire": dataClotureAffectation.commentaire, 
+        "motifFin": dataClotureAffectation.motifFin,
+        "dateFin": dataClotureAffectation.dateFin
       }
     
-    console.log("dans le ts clôture Affectation", mesdatacloture);
+    console.log("dans le ts clôture Affectation mesdatacloture", mesdatacloture);
 
     if(confirm('Voulez-vous vraiment clôturer? ' )) { 
      
