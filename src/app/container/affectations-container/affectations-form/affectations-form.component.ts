@@ -32,6 +32,13 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
   telephoneRecupere = false;
   collaborateurRecupere = false;
 
+  errorMessages = {
+   'uid': [
+     { type: 'required', message: 'uid is required' },
+     { type: 'maxlength', message: 'uid is too long' }
+   ]
+ };
+
     constructor(private fb:FormBuilder, 
     private serviceAffectation:AffectationService,
     private serviceTelephone:TelephoneService,
@@ -40,24 +47,12 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    //this.collaborateur$ = this.serviceCollaborateur.collaborateur$;
-    
-   //  this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
-   //  console.log("ngonInit dans subscribe collab", data);
-    
-   //    this.collaborateur = data 
-   //   this.collaborateurRecupere=true
-   //  });
 
-   //  this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
-   //    this.telephone = data 
-   //    this.telephoneRecupere=true
-   //  });
 
     this.dataCreateAffectation = this.fb.group(
 			{
-				uid: new FormControl('', Validators.compose( [Validators.required, Validators.maxLength(6)])) ,
-        modeleiphone: ['', Validators.required],
+				uid: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]) ,  //=>pas d'erreurt console
+        modeleiphone: new FormControl(['', Validators.required]),
         dateaffectation:['', Validators.required],
       //   numeroligne:['',Validators.compose([Validators.required, Validators.maxLength(10),Validators.minLength(10))]],
         numeroligne: new FormControl('', Validators.compose( [ Validators.minLength(10), Validators.maxLength(10), Validators.required])),
@@ -71,7 +66,6 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
      this.collaborateurRecupere = false;
      
     this.subsCollaborateur.unsubscribe();
-   //  this.subsCollaborateur.
     this.subsTelephone.unsubscribe();
 
   }
@@ -98,30 +92,28 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
     this.serviceAffectation.createAffectation(mesdata);
   }
 
-   rechercheEnBase(event:Event, uid:string){
+   rechercheEnBase(event:Event){
       event.preventDefault();
-      console.log(typeof(event));
-      
-    console.log("recherche uid dans le ts");
+       
     this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
       this.collaborateur = data 
        this.collaborateurRecupere=true
-       console.log("this.collaborateurRecupere=true");
        
       });
-    this.serviceCollaborateur.rechercheUid(uid);
+    this.serviceCollaborateur.rechercheUid(this.dataCreateAffectation.value.uid);
   }
 
-    rechercheEnBaseTel(modeleiphone:string) {
-    console.log("modeleiphone" + modeleiphone);
-   //  event.preventDefault();
-   if (modeleiphone) {
-    this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
-      this.telephone = data 
-      this.telephoneRecupere=true
-    });
-    this.serviceTelephone.rechercheModeleTel(modeleiphone);}
+   rechercheEnBaseTel(modeleiphone: string) {
+      if (this.dataCreateAffectation.value.modeleiphone) {
+         this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
+            this.telephone = data
+            this.telephoneRecupere = true
+         });
+         this.serviceTelephone.rechercheModeleTel(this.dataCreateAffectation.value.modeleiphone);
+      }
 
-  }
+   }
+
+
   
 }
