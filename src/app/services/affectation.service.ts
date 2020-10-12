@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -32,6 +32,7 @@ export class AffectationService {
       .subscribe(
         () => {
           console.log('Enregistrement terminé !');
+          alert("affectation créée");
         },
         (error:HttpErrorResponse) => {
           console.log('Erreur ! : ' , error.status); }
@@ -66,5 +67,45 @@ export class AffectationService {
       return this._affectationSubject;
       
    }
+   cloturerAffectation(dataClotureAffectation)  {
+    
+    console.log("dans cloturerAffectation--dataCloturerAffectation---", dataClotureAffectation);
 
+    this.http.put(this.API+"/affectation/cloture",dataClotureAffectation)
+      .subscribe(
+        () => {
+          console.log('clôture effectuée !');
+          alert("affectation clôturée");
+        },
+        (error:HttpErrorResponse) => {
+          console.log('Erreur sur la clôture ! : ' , error.status); }
+        );
+        }
+
+    supprimerAffectation(numeroaffectationasupprimer,commentaireasupprimer)  {
+
+      console.log("dans supprimer affectation---commentaireasupprimer*************", commentaireasupprimer);
+      let mot1='"';
+      let commentaireaenvoyer = commentaireasupprimer;
+      let commentaire = mot1+commentaireaenvoyer+mot1;
+
+      console.log("dans supprimer affectation---commentaire ***********",commentaire);
+
+      let deleteParams= new HttpParams().set("id",numeroaffectationasupprimer)
+                                        .set("commentaire",commentaire);
+
+     
+     console.log("dans supprimer affectation---deleteParams---", deleteParams);
+      this.http.delete(this.API+"/affectation/suppression",{params:deleteParams})
+          .subscribe(
+              () => {
+                console.log('suppression effectuée !');
+                alert("affectation supprimée");
+              },
+              (error:HttpErrorResponse) => {
+                console.log('Erreur sur la suppression! : ' , error.status); }
+              );
+              }
+      
 }
+

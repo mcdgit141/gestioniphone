@@ -18,6 +18,7 @@ import { SidebarComponent } from './container/sidebar/sidebar.component';
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { ContainerComponent } from './container/container.component';
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
+import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UtilisateurDeleteComponent } from './container/utilisateurs-container/u
     UtilisateursFormComponent,
     SidebarComponent,
     ContainerComponent,
-    UtilisateurDeleteComponent
+    UtilisateurDeleteComponent,
+    AffectationDeleteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 export interface Site{
-    codesite:string;
+    codeSite:string;
     nomSite:string;
-    adressepostale:string;
-    codepostal:string;
+    adressePostale1:string;
+    codePostal:string;
     ville:string;
     pays:string;
-    datecreation:Date;
-    datecloture:Date;
+    dateCreation:Date;
+    dateCloture:Date;
 }

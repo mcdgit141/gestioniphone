@@ -33,7 +33,7 @@ public utilisateurASupprimer$:Observable<Utilisateur>  = this._utilisateur.asObs
 
   async deleteUser(uid) {
     let deleteParams= new HttpParams().set("uid",uid);
-    console.log(deleteParams)
+    console.log("dans deleteUser--deleteParams---",deleteParams)
     await this.http.delete(environment.API_URL+"/utilisateur/delete",{params:deleteParams}).toPromise().then();
   }
 

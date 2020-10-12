@@ -34,6 +34,7 @@ export class AffectationsListeComponent implements OnInit {
 
       this.affectationService.getAffectations();
    }
+   
 
    showDetail(event, numeroAffectation) {
       console.log("dans showDetail--numero affectation" , numeroAffectation)
