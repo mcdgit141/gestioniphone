@@ -18,7 +18,6 @@ dataClotureAffectation:FormGroup;
 motifTrouve:Array<string> = Object.values(MotifFin);
 
 numeroAffectationRecu;
-numeroAffectationTransforme;
 
   constructor(private fb:FormBuilder,private serviceAffectation:AffectationService,private router:Router, private route:ActivatedRoute) { }
 
@@ -29,7 +28,6 @@ numeroAffectationTransforme;
 
      console.log("dans detail affectation--numeroAffectation",this.numeroAffectationRecu);
      
-     this.numeroAffectationTransforme = parseInt(this.numeroAffectationRecu, 10);
            
       })
 
@@ -48,11 +46,10 @@ numeroAffectationTransforme;
     
     console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataClotureAffectation);
     
-    console.log("dans le ts clôture Affectation formulaire numeroAffectationTransformé", this.numeroAffectationTransforme);
 
     let mesdatacloture = 
       {
-        "numeroAffectation": this.numeroAffectationTransforme,
+        "numeroAffectation": this.numeroAffectationRecu,
         "commentaire": dataClotureAffectation.commentaire, 
         "motifFin": dataClotureAffectation.motifFin,
         "dateFin": dataClotureAffectation.dateFin

@@ -12,7 +12,6 @@ export class AffectationDeleteComponent implements OnInit {
 
   dataSuppressionAffectation:FormGroup;
   numeroAffectationRecu;
-  numeroAffectationTransforme:number;
 
   constructor(private fb:FormBuilder,private serviceAffectation:AffectationService,private router:Router, private route:ActivatedRoute) { }
 
@@ -20,10 +19,8 @@ export class AffectationDeleteComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.numeroAffectationRecu = params.get("numeroAffectation");
-      this.numeroAffectationTransforme = parseInt(this.numeroAffectationRecu, 10);
       
       console.log("dans detail affectation--numeroAffectationReçu --type---", typeof(this.numeroAffectationRecu));
-      console.log("dans detail affectation--numeroAffectationTransforme --type---", typeof(this.numeroAffectationTransforme));
             
        })
  
@@ -36,7 +33,7 @@ export class AffectationDeleteComponent implements OnInit {
   suppressionAffectation(dataSuppressionAffectation){
     
     console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataSuppressionAffectation);
-    let numeroAffectationAsupprimer = this.numeroAffectationTransforme;
+    let numeroAffectationAsupprimer = this.numeroAffectationRecu;
     let commentaireAsupprimer = dataSuppressionAffectation.commentaire;
     //let mot1 = "?id=";
    // let mot2 = numeroAffectationAsupprimer;
@@ -55,7 +52,6 @@ export class AffectationDeleteComponent implements OnInit {
 
     //let mesdatadelete = 
     //  {
-    //    numeroAffectation : this.numeroAffectationTransforme, 
     //    commentaire : dataSuppressionAffectation.commentaire, 
     //    
     //  }
