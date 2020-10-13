@@ -46,7 +46,25 @@ export class AffectationService {
     getAffectations() {
       console.log("getAffectations - entre");
             
-      let param = {};
+      let param = {
+         // "uid": "100200",
+         "uid": null,
+            "nom": null,
+            "codeUo": null,
+            "nomUsageUo": null,
+            "nomSite": null,
+            "numeroLigneCollaborateur": null,
+            "nomModeleIphone": null,
+            "dateRenouvMin": null,
+            // "dateRenouvMin": "2020-07-07",
+            "dateRenouvMax": null,
+            // "taillePage": 5,
+            "taillePage": null,
+            "numeroDePage": 1,
+            "critereDeTri": "UID",
+            "sensduTri": "D"
+      }
+
       console.log(this._affectationSubject);
      //  this._affectationSubject.subscribe(
         //  data => { if (data.length === 0) {
