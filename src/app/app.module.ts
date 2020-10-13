@@ -36,7 +36,7 @@ import { Erreur404Component } from './erreur404/erreur404.component';
     ContainerComponent,
     UtilisateurDeleteComponent,
     AffectationDeleteComponent,
-    Erreur404Component
+    Erreur404Component   
   ],
   imports: [
     BrowserModule,

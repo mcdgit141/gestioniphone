@@ -11,13 +11,13 @@ export class AppComponent {
   title = 'gestioniphone';
 
   constructor(private router:Router, private loginService:LoginService) {
-
-  }
-
-  logOut(ev) {
-    ev.preventDefault();
-    this.loginService.logout();
-   //  localStorage.clear();
-    this.router.navigate(["/login"]);
+    
+ }
+ 
+   logOut(ev) {
+   ev.preventDefault();
+   this.loginService.logout();
+  localStorage.clear();
+  this.router.navigate(["/login"]);
   }
 }
