@@ -1,3 +1,4 @@
+import { ValueTransformer } from '@angular/compiler/src/util';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
 import { stringify } from 'querystring';
@@ -31,7 +32,7 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
 
   telephoneRecupere = false;
   collaborateurRecupere = false;
-
+  
   errorMessages = {
    'uid': [
      { type: 'required', message: 'uid is required' },
@@ -59,10 +60,8 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
         commentaire:['',Validators.required]
         
       } );
-  
+        
   }
-
-
 
   ngOnDestroy(): void{
      console.log("Ondestroy");
@@ -73,7 +72,6 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
    // this.subsTelephone.unsubscribe();
 
   }
-
 
    creationAffectation(dataCreateAffectation) {
 
@@ -98,32 +96,33 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
       this.serviceAffectation.createAffectation(mesdata);
    }
 
-
-
    rechercheEnBase(event: Event) {
       event.preventDefault();
 
-      this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe(data => {
+      this.subsCollaborateur = this.serviceCollaborateur.collaborateur$.subscribe((data:any) => {
          this.collaborateur = data
-         this.collaborateurRecupere = true
-
+         if (data.length != 0){
+            this.collaborateurRecupere = true
+         }
       });
       this.serviceCollaborateur.rechercheUid(this.dataCreateAffectation.value.uid);
    }
 
-
-   
-   rechercheEnBaseTel(modeleiphone: string) {
+      rechercheEnBaseTel(modeleiphone: string) {
+          
       if (this.dataCreateAffectation.value.modeleiphone) {
-         this.subsTelephone = this.serviceTelephone.telephone$.subscribe(data => {
+         this.subsTelephone = this.serviceTelephone.telephone$.subscribe((data:any) => {
+            console.log("dans recherche téléphone---data ", data);
             this.telephone = data
-            this.telephoneRecupere = true
+            if (data.valueof != 0) {
+               this.telephoneRecupere = true
+            }
          });
+         
+         this.telephoneRecupere = false ;
          this.serviceTelephone.rechercheModeleTel(this.dataCreateAffectation.value.modeleiphone);
       }
 
    }
-
-
   
 }

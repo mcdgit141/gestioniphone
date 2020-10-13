@@ -1,6 +1,7 @@
 <div class="col-sm-8 col-sm-offset-2 d-flex justify-center">
    <h2>Création d'une affectation</h2>
 </div>
+<br>
 <div class="col-sm-8 col-sm-offset-2">
    <form (ngSubmit)="creationAffectation(dataCreateAffectation)" [formGroup]="dataCreateAffectation">
 
@@ -31,11 +32,12 @@
          <button class="btn btn-primary" (click)="rechercheEnBase($event)"
             [disabled]="dataCreateAffectation.controls.uid.invalid">Rechercher le collaborateur</button>
       </div>
-      <div *ngIf="collaborateurRecupere === true">
-         <span *ngIf="collaborateurRecupere === true"> nom : {{ collaborateur.nom }} </span>
-         <span *ngIf="collaborateurRecupere === true"> prenom : {{ collaborateur.prenom }} </span>
+      <br>
+       <div *ngIf="collaborateurRecupere === true">
+         <span *ngIf="collaborateurRecupere === true" style="margin:15px;">Nom : {{ collaborateur.nom }}   </span>
+         <span *ngIf="collaborateurRecupere === true" style="margin:15px;">Prenom : {{ collaborateur.prenom }}  </span>
       </div>
-
+      <br>
       <label for="modeleiphone"><strong> Modele Iphone</strong> </label>
       <select id="modeleiphone" class="form-control" formControlName="modeleiphone" name="modeleiphone"
          (ngModelChange)="rechercheEnBaseTel($event)">
@@ -44,13 +46,15 @@
          </ng-container>
 
       </select>
+      <br>
       <div *ngIf="telephoneRecupere === true">
 
-         <span *ngIf="telephoneRecupere === true"> numéro de série : {{ telephone.numeroSerie }} </span>
-         <span *ngIf="telephoneRecupere === true"> prix : {{ telephone.prixIphone }} </span>
-         <span *ngIf="telephoneRecupere === true"> état : {{ telephone.etatIphone }} </span>
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Numéro de série : {{ telephone.numeroSerie }}</span>
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Prix : {{ telephone.prixIphone }} </span>
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Etat : {{ telephone.etatIphone }} </span>
 
       </div>
+      <br>
 
       <label for="numeroligne"><strong>Numero de Ligne</strong>
 
