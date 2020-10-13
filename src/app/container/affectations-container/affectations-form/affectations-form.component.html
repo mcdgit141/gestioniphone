@@ -41,7 +41,7 @@
       <label for="modeleiphone"><strong> Modele Iphone</strong> </label>
       <select id="modeleiphone" class="form-control" formControlName="modeleiphone" name="modeleiphone"
          (ngModelChange)="rechercheEnBaseTel($event)">
-         <ng-container *ngFor="let Iphone of ListeIphone">
+         <ng-container *ngFor="let Iphone of listeIphone">
             <option [ngValue]="Iphone">{{Iphone}}</option>
          </ng-container>
 

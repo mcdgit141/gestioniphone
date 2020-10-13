@@ -23,21 +23,15 @@ export class AffectationsDetailsComponent implements OnInit {
 
       this.isAdmin = this.loginService.isItAdmin();
       this.isType2 = this.loginService.isItType2();
-      console.log("booleen isAdmin dans détail affectation", this.isAdmin);
-      console.log("booleen isType2 dans détail affectation", this.isType2);
-
+    
       this.route.paramMap.subscribe(params => {
       this.numeroAffectation = params.get("numeroAffectation");
-      console.log("dans detail affectation--numeroAffectation",this.numeroAffectation);
+      
 
       this.loading = true;
 
       this.affectationService.affectations$.subscribe(data => {
-        //console.log("dans detail affectation--numeroAffectation",this.numeroAffectation);
-        //console.log("data-associé a numero affectation--", data[0].numeroAffectation);
-        //console.log("dans détail---type numeroAffectation",typeof(this.numeroAffectation));
-       
-        //console.log("dans détail---type numeroAffectation data", typeof(data[0].numeroAffectation));
+      
         this.affectation = data.filter(affectationSelectionne => affectationSelectionne.numeroAffectation.toString()
           ===  this.numeroAffectation)[0];
               
@@ -49,12 +43,12 @@ export class AffectationsDetailsComponent implements OnInit {
     } //fin ngOnInit
 
     closeAffectation(event, numeroAffectation) {
-      console.log("dans closeAffectation--numero affectation" , numeroAffectation)
+     
       this.router.navigate(['container/details/cloture', numeroAffectation]);
    }
 
     deleteAffectation(event, numeroAffectation) {
-      console.log("dans deleteAffectation--numero affectation" , numeroAffectation)
+    
       this.router.navigate(['container/details/delete', numeroAffectation]);
   }
  }

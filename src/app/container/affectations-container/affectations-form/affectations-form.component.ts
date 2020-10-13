@@ -6,6 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Affectation } from 'src/app/models/affectation';
 import { Collaborateur } from 'src/app/models/collaborateur';
 import { Iphone } from 'src/app/models/iphone';
+import { ListeIphone } from 'src/app/models/listeiphone';
 import { AffectationService } from 'src/app/services/affectation.service';
 import { CollaborateurService } from 'src/app/services/collaborateur.service';
 import { TelephoneService } from 'src/app/services/telephone.service';
@@ -26,7 +27,8 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
   
   
   dataCreateAffectation;
-  ListeIphone=["Iphone8","Iphone9","Iphone10","Iphone11"];
+  listeIphone:Array<string> = Object.values(ListeIphone);
+ 
   subsCollaborateur:Subscription;
   subsTelephone:Subscription;
 
@@ -46,14 +48,11 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
     private serviceCollaborateur:CollaborateurService
     ) { }
 
-
-
-
   ngOnInit(): void {
 
     this.dataCreateAffectation = this.fb.group(
 			{
-				uid: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]) , 
+		  uid: new FormControl('', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]) , 
         modeleiphone: new FormControl(['', Validators.required]),
         dateaffectation:['', Validators.required],
         numeroligne: new FormControl('', Validators.compose( [ Validators.minLength(10), Validators.maxLength(10), Validators.required])),
@@ -64,19 +63,13 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void{
-     console.log("Ondestroy");
-     this.collaborateurRecupere = false;
      
-    //this.subsCollaborateur.unsubscribe();
-   //  this.subsCollaborateur.
-   // this.subsTelephone.unsubscribe();
-
+     this.collaborateurRecupere = false;
+       
   }
 
    creationAffectation(dataCreateAffectation) {
 
-      console.log("soumissionAffectationdatacreateaffectation", dataCreateAffectation.value);
-      console.log("soumissionAffectationdatanumeroSerie", dataCreateAffectation.value.numeroSerie);
       let mesdata = {
          collaborateur: {
             "numeroLigne": dataCreateAffectation.value.numeroligne,
@@ -85,14 +78,10 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
          "commentaire": dataCreateAffectation.value.commentaire,
          "dateAffectation": dataCreateAffectation.value.dateaffectation,
          "iphone": {
-            "numeroSerie": this.telephone.numeroSerie
+         "numeroSerie": this.telephone.numeroSerie
          }
       }
-
-      //affectation: Affectation = new Affectation;
-      console.log("mesdata dans creation ts---", mesdata);
-      //let formatJsonMesDatas = JSON.stringify(mesdata);
-
+          
       this.serviceAffectation.createAffectation(mesdata);
    }
 
@@ -112,13 +101,13 @@ export class AffectationsFormComponent implements OnInit, OnDestroy {
           
       if (this.dataCreateAffectation.value.modeleiphone) {
          this.subsTelephone = this.serviceTelephone.telephone$.subscribe((data:any) => {
-            console.log("dans recherche téléphone---data ", data);
+           
             this.telephone = data
             if (data.valueof != 0) {
                this.telephoneRecupere = true
             }
          });
-         
+
          this.telephoneRecupere = false ;
          this.serviceTelephone.rechercheModeleTel(this.dataCreateAffectation.value.modeleiphone);
       }

@@ -25,10 +25,7 @@ numeroAffectationRecu;
 
     this.route.paramMap.subscribe(params => {
      this.numeroAffectationRecu = params.get("numeroAffectation");
-
-     console.log("dans detail affectation--numeroAffectation",this.numeroAffectationRecu);
-     
-           
+               
       })
 
     this.dataClotureAffectation = this.fb.group(
@@ -44,10 +41,7 @@ numeroAffectationRecu;
 
   clotureAffectation(dataClotureAffectation){
     
-    console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataClotureAffectation);
-    
-
-    let mesdatacloture = 
+   let mesdatacloture = 
       {
         "numeroAffectation": this.numeroAffectationRecu,
         "commentaire": dataClotureAffectation.commentaire, 
@@ -55,9 +49,7 @@ numeroAffectationRecu;
         "dateFin": dataClotureAffectation.dateFin
       }
     
-    console.log("dans le ts clôture Affectation mesdatacloture", mesdatacloture);
-
-    if(confirm('Voulez-vous vraiment clôturer? ' )) { 
+      if(confirm('Voulez-vous vraiment clôturer? ' )) { 
      
       this.serviceAffectation.cloturerAffectation(mesdatacloture);  
     }
