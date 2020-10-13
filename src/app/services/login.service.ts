@@ -10,6 +10,7 @@ export class LoginService {
 
   private API=environment.API_URL;
   roles:[any];
+  passwordIsDefault:boolean;
   isLoggedIn: boolean = false;
   isAdmin:boolean = false;
   isType1:boolean = false;
@@ -23,8 +24,10 @@ export class LoginService {
   async authentification(credentials) {
      await this.http.post("http://localhost:9095/authenticate",credentials)
     .toPromise().then((response:any) => {
+       console.log("**** reponse du back sur authenticate", response);
       this.setToken(response.jwtToken);
       this.roles=response.authorities;
+      this.passwordIsDefault=response.defaultPassword;
       // console.log(" response.authorities : " + response.authorities + "-" + typeof response.authorities);
       // console.log(" response.authorities : " + response.authorities.values + "-" + typeof response.authorities);
       // console.log(" this.roles : "  + this.roles + "-" + typeof this.roles); 

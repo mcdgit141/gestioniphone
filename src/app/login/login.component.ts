@@ -15,6 +15,7 @@ import { ReactiveFormsModule} from '@angular/forms'
 })
 export class LoginComponent {
 	credentials;
+	passwordNeedToBeChanged:boolean = false;
 
 
 	constructor(private fb:FormBuilder, private serviceLogin:LoginService, private router:Router, private route:ActivatedRoute) { }
