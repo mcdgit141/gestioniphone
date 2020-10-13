@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms' 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { UtilisateurDeleteComponent } from './container/utilisateurs-container/u
 import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
 import { Erreur404Component } from './erreur404/erreur404.component';
 import { HttperrInterceptor } from './services/interceptors/httperr.interceptor';
+import { GlobalErrorHandler } from './services/ErrorHandler/GlobalErrorHandler';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HttperrInterceptor } from './services/interceptors/httperr.interceptor'
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: HttperrInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: HttperrInterceptor, multi: true},
+    { provide: ErrorHandler, useClass: GlobalErrorHandler}
   ],
   bootstrap: [AppComponent]
 })
