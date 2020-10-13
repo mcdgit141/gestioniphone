@@ -17,7 +17,7 @@ export class UtilisateursFormComponent implements OnInit {
   libelleRole:Array<String> = Object.values(RoleUtilisateur);
 
   constructor(private fb:FormBuilder, 
-            private utilisateurService:UtilisateurService) { 
+            private utilisateurService:UtilisateurService, private route:Router) { 
             }
 
   ngOnInit(): void {
@@ -30,10 +30,16 @@ export class UtilisateursFormComponent implements OnInit {
 
   }
 
-
   creerUtilisateur(utilisateur) {
     this.utilisateurService.habiliterUtilisateur(utilisateur.value).then(
-      () => this.utilisateurService.resetUtilisateurSubject()
-    )
+      () => {this.utilisateurService.resetUtilisateurSubject();
+              
+        if (confirm("Habiliter un autre utilisateur")) {
+          this.utilisateur.reset();
+        } else {
+          this.route.navigate(["/home"]);
+        }
+      }
+    ); 
   }
 }
