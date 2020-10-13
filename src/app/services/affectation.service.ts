@@ -13,8 +13,11 @@ export class AffectationService {
   authService: any;
   
   private _affectationSubject = new BehaviorSubject<Affectation[]>([]);
+  private _affectationMetaSubject = new BehaviorSubject({});
+
    // _affectationSubject = new BehaviorSubject<[]>([]);
   readonly affectations$:Observable<Affectation[]> = this._affectationSubject.asObservable();
+  readonly affectationMeta$:Observable<any> = this._affectationMetaSubject.asObservable();
 
   constructor(private http:HttpClient) { }
 
@@ -50,13 +53,16 @@ export class AffectationService {
         //  data =>  {
 
            //  console.log("getAffectations - avant post");
-             this.http.post(this.API+"/affectation/liste",param).subscribe(
-                (data:[]) => {
+             this.http.post(this.API+"/affectation/liste2",param).subscribe(
+                (data:any) => {
                    console.log(data);
+                   console.log(data.metadata);
+                   console.log(data.datas);
                  //   let affectation = data[''];
                  //   console.log(affectation);
                    
-                   this._affectationSubject.next(data)
+                   this._affectationSubject.next(data.datas)
+                   this._affectationMetaSubject.next(data.metadata)
                 }
                 )
         // }
