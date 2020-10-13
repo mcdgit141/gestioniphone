@@ -43,34 +43,34 @@ export class AffectationService {
         }
 
         
-    getAffectations() {
+    getAffectations(param) {
       console.log("getAffectations - entre");
             
-      let param = {
-         // "uid": "100200",
-         "uid": null,
-            "nom": null,
-            "codeUo": null,
-            "nomUsageUo": null,
-            "nomSite": null,
-            "numeroLigneCollaborateur": null,
-            "nomModeleIphone": null,
-            "dateRenouvMin": null,
-            // "dateRenouvMin": "2020-07-07",
-            "dateRenouvMax": null,
-            // "taillePage": 5,
-            "taillePage": null,
-            "numeroDePage": 1,
-            "critereDeTri": "UID",
-            "sensduTri": "D"
-      }
+      // let param1 = {
+      //     "uid": "100200",
+      // //    "uid": null,
+      //       "nom": null,
+      //       "codeUo": null,
+      //       "nomUsageUo": null,
+      //       "nomSite": null,
+      //       "numeroLigneCollaborateur": null,
+      //       "nomModeleIphone": null,
+      //       "dateRenouvMin": null,
+      //       // "dateRenouvMin": "2020-07-07",
+      //       "dateRenouvMax": null,
+      //       // "taillePage": 5,
+      //       "taillePage": null,
+      //       "numeroDePage": 1,
+      //       "critereDeTri": "UID",
+      //       "sensduTri": "D"
+      // }
 
       console.log(this._affectationSubject);
      //  this._affectationSubject.subscribe(
         //  data => { if (data.length === 0) {
         //  data =>  {
 
-           //  console.log("getAffectations - avant post");
+            console.log("getAffectations param - avant post********--" , param);
              this.http.post(this.API+"/affectation/liste2",param).subscribe(
                 (data:any) => {
                    console.log(data);
@@ -91,6 +91,8 @@ export class AffectationService {
       return this._affectationSubject;
       
    }
+
+  
    cloturerAffectation(mesdatacloture)  {
     
     console.log("dans cloturerAffectation--mesdatacloture*****---", mesdatacloture);

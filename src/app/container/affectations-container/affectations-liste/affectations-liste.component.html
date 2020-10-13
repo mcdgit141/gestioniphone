@@ -6,11 +6,13 @@
    <thead>
       <tr>
          <th scope="col">Date affectation </th>
-         <th scope="col">UID</th>
+         <th scope="col">UID </th>
          <th scope="col">Nom</th>
          <th scope="col">Prénom</th>
          <th scope="col">Uo</th>
+         <th scope="col">Nom UO</th>
          <th scope="col">Nom site</th>
+         <th scope="col">Numéro Ligne</th>
          <th scope="col">modèle</th>
          <th scope="col">Date renouv.<br>prévue</th>
          <th scope="col"></th>
@@ -20,7 +22,6 @@
    <tbody>
       <tr>
          <td>
-            <input  #inputDateAffectation placeholder="rechercher.par date affectation.." type="date" >
          </td>
          <td>
              <input  #inputUID placeholder="rechercher.par uid.." type="text" size="6">
@@ -29,24 +30,29 @@
              <input  #inputNom placeholder="rechercher.par nom.." type="text" size="20" >
          </td>
          <td>
-             <input  #inputPrenom placeholder="rechercher.par prenom.." type="text" size="20">
          </td>
          <td>
-             <input  #inputCodeUo placeholder="rechercher.par UO.." type="text" size="6">
+             <input  #inputCodeUo placeholder="rechercher.par code UO.." type="text" size="6">
          </td>
          <td>
-             <input  #inputSite placeholder="rechercher.par site.." type="text" size="10">
+            <input  #inputNomUo placeholder="rechercher.par nom UO.." type="text" size="10">
+        </td>
+         <td>
+             <input  #inputSite placeholder="rechercher.par site.." type="text" size="8">
          </td>
+         <td>
+            <input  #inputNumLigne placeholder="rechercher.par numéro ligne.." type="tel" size="10">
+        </td>
          <td>
              <input  #inputModel placeholder="rechercher.par modèle iphone.." type="text" size="8">
          </td>
          <td>
-             <input  #inputDateRenouv placeholder="rechercher.par date renouvellement.." type="date"  min="2020-01-01" max="2020-12-31">
+             <input  #inputDateRenouvMin placeholder="rechercher.par date renouvellement.." type="date"  min="2020-01-01" max="2020-12-31">
              <br>
-             <input  #inputDateRenouv placeholder="rechercher.par date renouvellement.." type="date"  min="2020-01-01" max="2020-12-31">
+             <input  #inputDateRenouvMax placeholder="rechercher.par date renouvellement.." type="date"  min="2020-01-01" max="2020-12-31">
          </td>
          <td>
-            <button (click)="rechercheFiltre()">Lancer la recherche</button>
+            <button (click)="rechercheFiltre()">Appliquer les filtres</button>
          </td> 
                
       </tr>
@@ -56,7 +62,9 @@
          <td>{{affectation.collaborateur.nom}}</td>
          <td>{{affectation.collaborateur.prenom}}</td>
          <td>{{affectation.collaborateur.uo.codeUo}}</td>
+         <td>{{affectation.collaborateur.uo.nomUsageUo}}</td>
          <td>{{affectation.collaborateur.uo.siteExercice?.nomSite}}</td>
+         <td>{{affectation.collaborateur.numeroLigne}}</td>
          <td>{{affectation.iphone.modeleIphoneDTO.nomModele}}</td>
          <td>{{affectation.dateRenouvellementPrevue}}</td>
          <td>
