@@ -25,35 +25,31 @@ numeroAffectationRecu;
 
     this.route.paramMap.subscribe(params => {
      this.numeroAffectationRecu = params.get("numeroAffectation");
-     console.log("dans detail affectation--numeroAffectation",this.numeroAffectationRecu);
-           
+               
       })
 
     this.dataClotureAffectation = this.fb.group(
 			{
         commentaire:['',Validators.required],
         motifFin: ['', Validators.required],
-        datecloture:['', Validators.required],
+        dateFin:['', Validators.required],
                 
       } );
-      
+     
      
   } // fin du ngOnInit
 
   clotureAffectation(dataClotureAffectation){
     
-    console.log("dans le ts clôture Affectation formulaire dataclotureaffectation", dataClotureAffectation);
-    let mesdatacloture = 
+   let mesdatacloture = 
       {
-        numeroAffectation : this.numeroAffectationRecu, 
-        commentaire : dataClotureAffectation.commentaire, 
-        motifFin : dataClotureAffectation.motifFin,
-        datecloture : dataClotureAffectation.datecloture
+        "numeroAffectation": this.numeroAffectationRecu,
+        "commentaire": dataClotureAffectation.commentaire, 
+        "motifFin": dataClotureAffectation.motifFin,
+        "dateFin": dataClotureAffectation.dateFin
       }
     
-    console.log("dans le ts clôture Affectation", mesdatacloture);
-
-    if(confirm('Voulez-vous vraiment clôturer? ' )) { 
+      if(confirm('Voulez-vous vraiment clôturer? ' )) { 
      
       this.serviceAffectation.cloturerAffectation(mesdatacloture);  
     }

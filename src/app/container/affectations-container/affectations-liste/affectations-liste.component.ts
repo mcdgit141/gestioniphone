@@ -19,8 +19,7 @@ export class AffectationsListeComponent implements OnInit {
   constructor(private affectationService:AffectationService, private loginService:LoginService, private router:Router) { }
 
    ngOnInit(): void {
-      //   this.affectationService.getAffectations().subscribe (
-
+      
       this.isAdmin = this.loginService.isItAdmin();
       this.isType2 = this.loginService.isItType2();
 
@@ -37,12 +36,8 @@ export class AffectationsListeComponent implements OnInit {
    
 
    showDetail(event, numeroAffectation) {
-      console.log("dans showDetail--numero affectation" , numeroAffectation)
+      
       this.router.navigate(['container/details', numeroAffectation]);
    }
-
-   //closeAffectationAction(event, numeroAffectation) {
-     // this.router.navigate(['container/cloture', numeroAffectation]);
-   //}
-
+   
 }

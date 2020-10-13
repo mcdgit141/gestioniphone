@@ -25,10 +25,6 @@
             <select formControlName="motifFin" class="form-control" #motif>
                 <option selected>Sélectionnez un des motifs proposés...</option> 
                 
-                <!-- <option value="CASSE">CASSE</option>
-                <option value="PERDU">PERDU</option>
-                <option value="VOLE">VOLE</option>
-                <option value="RESTITUE">RESTITUE</option> -->
                 <option *ngFor="let motif of motifTrouve">{{ motif }}</option>
                 
             </select>
@@ -37,7 +33,7 @@
           
          <div class="form-group"> 
         <label for="datecloture"><strong>Date de clôture</strong></label>
-        <input type="date" id="datecloture" class="form-control" formControlName="datecloture" placeholder="Saisir la date de clôture" required >
+        <input type="date" id="datecloture" class="form-control" formControlName="dateFin" placeholder="Saisir la date de clôture" required >
          </div>
         <div>
             <dl>

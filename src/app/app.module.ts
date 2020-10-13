@@ -19,6 +19,7 @@ import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
 import { ContainerComponent } from './container/container.component';
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
 import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
+import { Erreur404Component } from './erreur404/erreur404.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AffectationDeleteComponent } from './container/affectations-container/a
     SidebarComponent,
     ContainerComponent,
     UtilisateurDeleteComponent,
-    AffectationDeleteComponent
+    AffectationDeleteComponent,
+    Erreur404Component
   ],
   imports: [
     BrowserModule,

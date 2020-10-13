@@ -12,6 +12,7 @@ import { AffectationsDetailsComponent } from './container/affectations-container
 import { AffectationsClotureComponent } from './container/affectations-container/affectations-cloture/affectations-cloture.component';
 import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
+import { Erreur404Component } from '../app/erreur404/erreur404.component';
 
 const routes: Routes = [
 
@@ -38,8 +39,10 @@ const routes: Routes = [
       {path:'deleteUser', canActivate:[AuthGuard], component: UtilisateurDeleteComponent, data: {roles: ['ADMIN']  }}
 
     ] 
-  }
-
+  },
+  { path: '404', component : Erreur404Component},
+  { path: '**', component : Erreur404Component},
+  
 ];
 
 @NgModule({

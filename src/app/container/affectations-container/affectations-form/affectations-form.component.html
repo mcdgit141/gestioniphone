@@ -1,71 +1,85 @@
-  <div class="col-sm-8 col-sm-offset-2 d-flex justify-center">
-    <h2>Création d'une affectation</h2>
-  </div>
-    <div class="col-sm-8 col-sm-offset-2" >
-      <form (ngSubmit)="creationAffectation(dataCreateAffectation)"  [formGroup]="dataCreateAffectation" >
+<div class="col-sm-8 col-sm-offset-2 d-flex justify-center">
+   <h2>Création d'une affectation</h2>
+</div>
+<br>
+<div class="col-sm-8 col-sm-offset-2">
+   <form (ngSubmit)="creationAffectation(dataCreateAffectation)" [formGroup]="dataCreateAffectation">
+
+      <!-- <div class="form-group"> -->
+         <div class="form-group">
+      <label for="uid"><strong>UID du collaborateur</strong>
+      </label>
       
-        <!-- <div class="form-group"> -->
-          <label for="uid"><strong>UID du collaborateur</strong>          
-          </label>
-            <input [class.isInvalid]="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.errors" type="text" class="form-control" formControlName="uid"  placeholder="Saisir UID">
-            <div style="height: 40px;">               
-               <!-- <div> -->
-               <div class="error" *ngIf="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.hasError('required')">
-                  L'UID doit être renseigné
-               </div>
-               <!-- <div class="error" *ngIf="dataCreateAffectation.controls.uid.touched">
+      <input [class.isInvalid]="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.errors"
+         type="text" class="form-control" formControlName="uid" placeholder="Saisir UID">
+      </div>
+         <div style="height: 20px;">
+         <!-- <div> -->
+         <div class="error"
+            *ngIf="dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.hasError('required')">
+            L'UID doit être renseigné
+         </div>
+         <!-- <div class="error" *ngIf="dataCreateAffectation.controls.uid.touched">
                   touched
                </div> -->
-               <div class="error"  
-                    *ngIf="(dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.hasError('maxlength')) 
+         <div class="error" *ngIf="(dataCreateAffectation.controls.uid.dirty && dataCreateAffectation.controls.uid.hasError('maxlength')) 
                     || (dataCreateAffectation.controls.uid.hasError('minlength'))">
-                    <!-- || (dataCreateAffectation.controls.uid.hasError('minlength') && dataCreateAffectation.controls.uid.touched)"> -->
-                  L'UID doit être sur 6 caractères
-               </div>
-            </div>
-            <div class="input-group-prepend">
-                      <button class="btn btn-primary" (click)="rechercheEnBase($event)" [disabled]="dataCreateAffectation.controls.uid.invalid">Rechercher le collaborateur</button>
-                  </div>
-                  <div *ngIf="collaborateurRecupere === true">
-                    <span *ngIf="collaborateurRecupere === true"> nom : {{ collaborateur.nom }} </span>
-                    <span *ngIf="collaborateurRecupere === true"> prenom : {{ collaborateur.prenom }} </span>
-                  </div>
-                      
-          <label for="modeleiphone"><strong> Modele Iphone</strong> </label> 
-          <select id="modeleiphone" class="form-control"  formControlName="modeleiphone" name="modeleiphone" (ngModelChange)="rechercheEnBaseTel($event)"> 
-            <ng-container *ngFor="let Iphone of ListeIphone">
-              <option   [ngValue]="Iphone" >{{Iphone}}</option>
-            </ng-container>
-            
-          </select>
-          <div *ngIf="telephoneRecupere === true"> 
-         
-            <span *ngIf="telephoneRecupere === true"> numéro de série : {{ telephone.numeroSerie }} </span>
-            <span *ngIf="telephoneRecupere === true"> prix : {{ telephone.prixIphone }} </span>
-            <span *ngIf="telephoneRecupere === true"> état : {{ telephone.etatIphone }} </span>
-            
-            </div>    
-          
-            <label for="numeroligne"><strong>Numero de Ligne</strong>
-                
-            </label>
-            <input type="tel" id="numeroligne" class="form-control" formControlName="numeroligne" placeholder="Saisir le numéro de ligne"  ng-minlength="10"  ng-maxlength="10" required>
-      
-        <label for="dateaffectation"><strong>Date Affectation</strong>
-            
-        </label>
-        <input type="date" id="dateaffectation" class="form-control" formControlName="dateaffectation" placeholder="Saisir la date d'affectation" required>
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
-            <label for="Commentaire"><strong>Commentaire</strong>
-               
-            </label>
-            <input type="text" id="commentaire" class="form-control" formControlName="commentaire" placeholder="Saisir un commentaire si souhaité">
-            <!-- </div> -->
-        <!-- <div class="form-group"> -->
-            <div class="d-flex justify-content-center" >
-              <button class="btn btn-primary d-flex justify-content-center" type="submit" [disabled]="dataCreateAffectation.invalid">Soummettre la création</button>
-            </div>
-        <!-- </div> -->
-      </form>
-    </div>
+            <!-- || (dataCreateAffectation.controls.uid.hasError('minlength') && dataCreateAffectation.controls.uid.touched)"> -->
+            L'UID doit être sur 6 caractères
+         </div>
+      </div>
+      <div class="input-group-prepend">
+         <button class="btn btn-primary" (click)="rechercheEnBase($event)"
+            [disabled]="dataCreateAffectation.controls.uid.invalid">Rechercher le collaborateur</button>
+      </div>
+      <br>
+       <div *ngIf="collaborateurRecupere === true">
+         <span *ngIf="collaborateurRecupere === true" style="margin:15px;">Nom : {{ collaborateur.nom }}   </span>
+         <span *ngIf="collaborateurRecupere === true" style="margin:15px;">Prenom : {{ collaborateur.prenom }}  </span>
+      </div>
+      <br>
+      <label for="modeleiphone"><strong> Modele Iphone</strong> </label>
+      <select id="modeleiphone" class="form-control" formControlName="modeleiphone" name="modeleiphone"
+         (ngModelChange)="rechercheEnBaseTel($event)">
+         <ng-container *ngFor="let Iphone of listeIphone">
+            <option [ngValue]="Iphone">{{Iphone}}</option>
+         </ng-container>
+
+      </select>
+      <br>
+      <div *ngIf="telephoneRecupere === true">
+
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Numéro de série : {{ telephone.numeroSerie }}</span>
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Prix : {{ telephone.prixIphone }} </span>
+         <span *ngIf="telephoneRecupere === true" style="margin:15px;"> Etat : {{ telephone.etatIphone }} </span>
+
+      </div>
+      <br>
+
+      <label for="numeroligne"><strong>Numero de Ligne</strong>
+
+      </label>
+      <input type="tel" id="numeroligne" class="form-control" formControlName="numeroligne"
+         placeholder="Saisir le numéro de ligne" ng-minlength="10" ng-maxlength="10" required>
+
+      <label for="dateaffectation"><strong>Date Affectation</strong>
+
+      </label>
+      <input type="date" id="dateaffectation" class="form-control" formControlName="dateaffectation"
+         placeholder="Saisir la date d'affectation" required>
+      <!-- </div> -->
+      <!-- <div class="form-group"> -->
+      <label for="Commentaire"><strong>Commentaire</strong>
+
+      </label>
+      <input type="text" id="commentaire" class="form-control" formControlName="commentaire"
+         placeholder="Saisir un commentaire si souhaité">
+      <!-- </div> -->
+      <!-- <div class="form-group"> -->
+      <div class="d-flex justify-content-center">
+         <button class="btn btn-primary d-flex justify-content-center" type="submit"
+            [disabled]="dataCreateAffectation.invalid">Soummettre la création</button>
+      </div>
+      <!-- </div> -->
+   </form>
+</div>
