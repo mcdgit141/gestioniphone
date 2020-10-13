@@ -37,8 +37,8 @@ import { HttperrInterceptor } from './services/interceptors/httperr.interceptor'
     ContainerComponent,
     UtilisateurDeleteComponent,
     AffectationDeleteComponent,
-    Erreur404Component   
-  ],
+    Erreur404Component
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

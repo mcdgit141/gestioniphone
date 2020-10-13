@@ -39,5 +39,7 @@ export class AffectationsListeComponent implements OnInit {
       
       this.router.navigate(['container/details', numeroAffectation]);
    }
-   
+   rechercheFiltre(){
+      
+   }
 }

@@ -14,6 +14,7 @@ import { AffectationDeleteComponent } from './container/affectations-container/a
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
 import { Erreur404Component } from '../app/erreur404/erreur404.component';
 
+
 const routes: Routes = [
 
 //   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
       {path:'gestion', redirectTo: 'liste', pathMatch:'full'},
       {path:'admin', redirectTo: 'createUser', pathMatch:'full'},
       {path:'liste', canActivate:[AuthGuard], component: AffectationsListeComponent},
+      //{path:'liste', canActivate:[AuthGuard], component: AffectationFiltreComponent },
      // {path:'cloture', canActivate:[AuthGuard], component: AffectationsClotureComponent, data: {roles: ['ADMIN', 'TYPE2']  }},
       {path:'details/:numeroAffectation', canActivate:[AuthGuard], component: AffectationsDetailsComponent},
       {path:'details/cloture/:numeroAffectation', canActivate:[AuthGuard], component: AffectationsClotureComponent},
