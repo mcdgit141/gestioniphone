@@ -20,6 +20,7 @@ import { ContainerComponent } from './container/container.component';
 import { UtilisateurDeleteComponent } from './container/utilisateurs-container/utilisateur-delete/utilisateur-delete.component';
 import { AffectationDeleteComponent } from './container/affectations-container/affectation-delete/affectation-delete.component';
 import { Erreur404Component } from './erreur404/erreur404.component';
+import { HttperrInterceptor } from './services/interceptors/httperr.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { Erreur404Component } from './erreur404/erreur404.component';
     ReactiveFormsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttperrInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
