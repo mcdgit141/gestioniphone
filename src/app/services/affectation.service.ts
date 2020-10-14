@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Affectation } from '../models/affectation';
@@ -19,7 +20,7 @@ export class AffectationService {
   readonly affectations$:Observable<Affectation[]> = this._affectationSubject.asObservable();
   readonly affectationMeta$:Observable<any> = this._affectationMetaSubject.asObservable();
 
-  constructor(private http:HttpClient) { }
+  constructor(private router: Router, private http:HttpClient) { }
 
   createAffectation(mesdata)  {
     //  console.log("mesdatadansservicecreation--" + formatJsonMesDatas);
@@ -36,6 +37,7 @@ export class AffectationService {
         () => {
           console.log('Enregistrement terminé !');
           alert("affectation créée");
+          this.router.navigate(['/container/liste']);
         },
         (error:HttpErrorResponse) => {
           console.log('Erreur ! : ' , error.status); }

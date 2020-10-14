@@ -40,7 +40,8 @@ numeroAffectationRecu;
   } // fin du ngOnInit
 
   clotureAffectation(dataClotureAffectation){
-    
+   console.log("affectation-cloture - clotureaffectation");
+   
    let mesdatacloture = 
       {
         "numeroAffectation": this.numeroAffectationRecu,
