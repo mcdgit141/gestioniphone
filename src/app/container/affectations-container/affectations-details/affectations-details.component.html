@@ -147,7 +147,7 @@
  
    <div class="d-flex justify-content-center " *ngIf="(isAdmin || isType2) && affectation.motifFin==null">
       <input class="btn btn-primary btn-lg " (click)="closeAffectation($event, affectation.numeroAffectation)" style="margin:25px;" value="Cloturer Affectation">
-      <input class="btn btn-danger btn-lg " (click)="deleteAffectation($event, affectation.numeroAffectation)" style="margin:25px;" value="Supprimer Affectation">
+      <input *ngIf="affectationDuJour" class="btn btn-danger btn-lg " (click)="deleteAffectation($event, affectation.numeroAffectation)" style="margin:25px;" value="Supprimer Affectation">
    </div>
 </div>
 
