@@ -31,17 +31,11 @@ export class LoginComponent {
 		
 	}
 
-	// async soumissionLogin(credentials) {
 	soumissionLogin(credentials) {
-		console.log("soumissionLogin",credentials.value);
-		// await this.serviceLogin.authentification(credentials.value);
-		this.serviceLogin.authentification(credentials.value).then(()=>{
-      
+		this.serviceLogin.authentification(credentials.value).then(()=>{   
       // On récupère l'url de redirection
       const redirectUrl = this.route.snapshot.queryParams['redirectUrl'] || '/home';
-      
-		console.log("soumissionLogin",redirectUrl);
-      
+
     // On accède à la page souhaitée
     this.router.navigate([redirectUrl]);}
    )

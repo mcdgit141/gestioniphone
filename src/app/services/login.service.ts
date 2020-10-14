@@ -24,31 +24,16 @@ export class LoginService {
   async authentification(credentials) {
      await this.http.post("http://localhost:9095/authenticate",credentials)
     .toPromise().then((response:any) => {
-       console.log("**** reponse du back sur authenticate", response);
       this.setToken(response.jwtToken);
       this.roles=response.authorities;
       this.passwordIsDefault=response.defaultPassword;
-      // console.log(" response.authorities : " + response.authorities + "-" + typeof response.authorities);
-      // console.log(" response.authorities : " + response.authorities.values + "-" + typeof response.authorities);
-      // console.log(" this.roles : "  + this.roles + "-" + typeof this.roles); 
-      // console.log(" this.roles : "  + this.roles.values + "-" + typeof this.roles); 
-      // let truc;
       
       this.setRoles(response.authorities);
       this.setUser(credentials.username);
-      // console.log("credentials : ");
-      // console.log(credentials);
-      // console.log(credentials.username);
-      
+
       this.isLoggedIn=true;
     });
     
-   //  this.roles.forEach(e => {
-   //    if (e.authority == "ROLE_ADMIN") {
-   //      this.isAdmin = true;
-   //    }});
-   //  console.log("isLoggedIn : " + this.isLoggedIn)
-   //  console.log("isAmin : " + this.isAdmin);
   }
 
    logout() {

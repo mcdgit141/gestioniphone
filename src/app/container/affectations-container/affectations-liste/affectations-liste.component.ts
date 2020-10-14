@@ -59,24 +59,6 @@ export class AffectationsListeComponent implements OnInit {
          "sensduTri": "D"
       };
 
-      //    let param1 = {
-
-      //       "uid": null,
-      //       "nom": null,
-      //       "codeUo": null,
-      //       "nomUsageUo": null,
-      //       "nomSite": null,
-      //       "numeroLigneCollaborateur": null,
-      //       "nomModeleIphone": null,
-      //       "dateRenouvMin": null,
-      //       "dateRenouvMax": null,
-      //       // "taillePage": 5,
-      //       "taillePage": null,
-      //       "numeroDePage": 1,
-      //       "critereDeTri": null,
-      //       "sensduTri": "D"
-      // }
-
       this.isAdmin = this.loginService.isItAdmin();
       this.isType2 = this.loginService.isItType2();
       this.pagination$ = this.affectationService.affectationMeta$;
@@ -84,7 +66,6 @@ export class AffectationsListeComponent implements OnInit {
       this.loading = true;
       this.affectationService.affectations$.subscribe(
          data => {
-            console.log("**** ce que le back retourne : ", data)
             this.listAffectations = data;
             this.loading = false;
          }
@@ -118,57 +99,7 @@ export class AffectationsListeComponent implements OnInit {
 
    rechercheFiltre() {
       this.construireLeFiltre()
-      console.log("**** debut methode rechercheFiltre ", this.filtre);
-      console.log("******", this.inputUID);
-      // if (this.inputUID.nativeElement.value === "") {
-      //    this.inputUID.nativeElement.value = null
-      // } 
-      // if (this.inputNom.nativeElement.value === "") {
-      //    this.inputNom.nativeElement.value = null
-      // }
-      // if (this.inputCodeUo.nativeElement.value === "") {
-      //    this.inputCodeUo.nativeElement.value = null
-      // }
-      // if (this.inputNomUo.nativeElement.value === "") {
-      //    this.inputNomUo.nativeElement.value = null
-      // }
-      // if (this.inputSite.nativeElement.value === "") {
-      //    this.inputSite.nativeElement.value = null
-      // }
-      // if (this.inputNumLigne.nativeElement.value === "") {
-      //    this.inputNumLigne.nativeElement.value = null
-      // }
-      // if (this.inputModel.nativeElement.value === "") {
-      //    this.inputModel.nativeElement.value = null
-      // }
-      // if (this.inputDateRenouvMin.nativeElement.value === "") {
-      //    this.inputDateRenouvMin.nativeElement.value = null
-      // }
-      // if (this.inputDateRenouvMax.nativeElement.value === "") {
-      //    this.inputDateRenouvMax.nativeElement.value = null
-      // }
-      // let param = {
-
-      //       "uid": this.inputUID.nativeElement.value,
-      //       "nom": this.inputNom.nativeElement.value,
-      //       "codeUo": this.inputCodeUo.nativeElement.value,
-      //       "nomUsageUo": this.inputNomUo.nativeElement.value,
-      //       "nomSite": this.inputSite.nativeElement.value,
-      //       "numeroLigneCollaborateur": this.inputNumLigne.nativeElement.value,
-      //       "nomModeleIphone": this.inputModel.nativeElement.value,
-      //       "dateRenouvMin": this.inputDateRenouvMin.nativeElement.value,
-      //       "dateRenouvMax": this.inputDateRenouvMax.nativeElement.value,
-      //       "taillePage": null,
-      //       "numeroDePage": 1,
-      //       "critereDeTri": null,
-      //       "sensduTri": "D"
-      // }
-
-      // console.log("param dans filtre***********--",param);
-      // this.affectationService.getAffectations(param);
       this.affectationService.getAffectations(this.filtre);
-
-
    }
 
    previousPage(pageEnCours) {
