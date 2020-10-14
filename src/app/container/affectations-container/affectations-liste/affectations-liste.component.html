@@ -60,7 +60,7 @@
          </td> 
                
       </tr>
-      <tr *ngFor="let affectation of listAffectations">
+      <tr *ngFor="let affectation of listAffectations" [class.cloturee]="affectation.motifFin!=null" >
          <td>{{affectation.dateAffectation}}</td>
          <td>{{affectation.collaborateur.uid}}</td>
          <td>{{affectation.collaborateur.nom}}</td>
