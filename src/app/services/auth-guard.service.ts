@@ -8,7 +8,6 @@ import { LoginService } from './login.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-	// constructor(private authService: AuthService, private router: Router) { }
 	constructor(private loginService: LoginService, private router: Router) { }
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
@@ -19,15 +18,9 @@ export class AuthGuard implements CanActivate {
 	}
 
 	checkLogin(url: string): boolean {
-      console.log("checkLogin - isLoggedIn : " + this.loginService.isLoggedIn);
-      console.log("checkLogin - url : " + url);
-      console.log("checkLogin - this.router.url : " + this.router.url);
-      
-		// if (this.loginService.isLoggedIn) { return true; }
 		if (this.loginService.getUser() != null) { return true; }
       
       this.loginService.redirectUrl = url;
-		// this.router.navigate(['/login'], { queryParams: { redirectUrl: this.router.url }});
 		this.router.navigate(['/login'], { queryParams: { redirectUrl: url }});
 
 		return false;

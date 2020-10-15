@@ -11,18 +11,17 @@ export class GlobalErrorHandler implements ErrorHandler {
     }
 
     handleError(error): void {
-
-        if (error.rejection.status != 401 && error.rejection.status != 403) {
-            let monErreur = {
-                erreur: error.rejection.error,
-                url: error.rejection.url
-                //idealement ajouter le body de la requête qui a provoqué l'erreur, mais pour l'instant je ne trouve pas cette info dans error
+        if (Object.getOwnPropertyNames(error).includes('rejection')) {
+            if (error.rejection.status != 401 && error.rejection.status != 403) {
+                let monErreur = {
+                    erreur: error.rejection.error,
+                    url: error.rejection.url
+                    //idealement ajouter le body de la requête qui a provoqué l'erreur, mais pour l'instant je ne trouve pas cette info dans error
+                }
+                this.loggerService.journaliserError(monErreur);
             }
-            this.loggerService.journaliserError(monErreur);
         }
-        
 
-        
     }
     
     

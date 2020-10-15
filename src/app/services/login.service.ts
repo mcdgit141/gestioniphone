@@ -114,18 +114,13 @@ export class LoginService {
          }
       }
 
-
       return role;
    }
 
    hasAnyRole(roles: String[]) {
-      console.log("hasAnyRole - entre" )
       let userRole = this.getRoles();
-
       for (let role of roles) {
-         if (roles.includes(userRole)) {
-            console.log("hasAnyRole - trouve !");
-            
+         if (roles.includes(userRole)) { 
             return true;
          }
       }
