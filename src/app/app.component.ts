@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoaderService } from './services/loader.service';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
   title = 'gestioniphone';
 
-  constructor(private router:Router, private loginService:LoginService) {
+  constructor(private router:Router, private loginService:LoginService, public loaderService:LoaderService) {
     
  }
  

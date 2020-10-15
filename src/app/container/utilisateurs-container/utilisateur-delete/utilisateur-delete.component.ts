@@ -35,26 +35,13 @@ export class UtilisateurDeleteComponent implements OnInit {
   }
 
   demanderSuppression(uid) {
-    console.log("j'entre dans la methode demanderSuppression");
-
-    // this.subsUtilisateur = this.utilisateurService.utilisateurASupprimer$.subscribe(   
-    //     data => {
-    //       console.log(data)
-    //       this.utilisateurTrouve=data;
-    //       this.userToDeleteFound = true;
-    //       this.utilisateurAttributes = Object.getOwnPropertyNames(this.utilisateurTrouve);
-    //       this.remplirFormulaireConfirmation();
-    //       console.log("tableau des attributs de utilisateur", this.utilisateurAttributes)
-    //             }
-    // )
 
     this.utilisateurService.rechercherUtilisateur(uid).then( () => {
-      console.log("je reviens de l'appel au service qui fait le call ajax");
+
       this.userToDeleteFound = true;
       this.utilisateurTrouve = this.utilisateurService.getUtilisateur();
       this.remplirFormulaireConfirmation();
       this.utilisateurAttributes = Object.getOwnPropertyNames(this.utilisateurTrouve);
-      console.log("tableau des attributs de utilisateur", this.utilisateurAttributes)
     }
     )
 
@@ -72,8 +59,6 @@ export class UtilisateurDeleteComponent implements OnInit {
   }
 
   confirmerSuppression(uid) {
-    //faire un prompt pour demander à resaisir le mdp, et comparé la valeur saisi avec le mdp contenu dans le token.
-    console.log("je supprime l'utilisateur", uid)
     this.utilisateurService.deleteUser(uid).then(
       () => {
         if (confirm("Supprimer un autre utilisateur?")) {

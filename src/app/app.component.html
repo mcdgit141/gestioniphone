@@ -1,7 +1,9 @@
 <div class="container vh-100" class="w-100">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary my-2">
     <div class="container">
-      <a routerLink="/home" class="navbar-brand" href="#">Application de Gestion des Iphones pour BDDF IT</a>
+      <a routerLink="/home" class="navbar-brand" href="#">Application de Gestion des Iphones pour BDDF IT 
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loaderService.isLoading$ | async"></span>
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,8 +24,6 @@
       </div>
     </div>
   </nav>
-
-  
 
   <div class="container vh-100" class="w-100">
     <!-- <app-affectation-filtre></app-affectation-filtre> -->
