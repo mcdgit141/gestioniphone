@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class AffectationsDetailsComponent implements OnInit {
 
+  pictureIphone;
   affectation:Affectation;
   numeroAffectation:string;
 
@@ -44,13 +45,14 @@ export class AffectationsDetailsComponent implements OnInit {
             if (dateJour == this.affectation.dateAffectation.toString()) {
                this.affectationDuJour = true
             }
+            if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone6'){
+                this.pictureIphone = "../../../../assets/imageIphone6.png"
+            }
          })
 
       })
 
    } //fin ngOnInit
-
-
 
    
     closeAffectation(event, numeroAffectation) {
