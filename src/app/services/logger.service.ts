@@ -10,8 +10,6 @@ export class LoggerService {
   constructor(private http:HttpClient) { }
 
   journaliserError(monErreur){
-    this.http.post(environment.API_URL+"/logging/log",monErreur).subscribe(
-      () => console.log("erreur sauvegardé")
-    )
+    this.http.post(environment.API_URL+"/logging/log",monErreur).subscribe()
   }
 }

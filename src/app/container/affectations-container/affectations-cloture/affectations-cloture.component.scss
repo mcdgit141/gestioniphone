@@ -11,3 +11,12 @@
     40%   {opacity:0; }
     100% { opacity:1; }
   }
+
+  .isInvalid {
+   border-color:red
+  }
+
+  .error {
+   color:red ;
+   font-size: smaller;
+  }

@@ -45,7 +45,6 @@ export class AffectationService {
 
 
   cloturerAffectation(mesdatacloture) {
-    console.log("****4- methode cloturerAffectatoin dans le serviceAffectation")
     this.http.put(this.API + "/affectation/cloture", mesdatacloture)
       .subscribe(
          () => {
