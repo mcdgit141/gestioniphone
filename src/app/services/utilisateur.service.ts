@@ -25,7 +25,6 @@ public utilisateurASupprimer$:Observable<Utilisateur>  = this._utilisateur.asObs
   async rechercherUtilisateur(uid:string) {
      await this.http.get(environment.API_URL+"/utilisateur/retrieve/"+uid).toPromise().then( 
       (reponse:any) => {
-        console.log("retour du back sur retrieve user : ", reponse)
         this._utilisateur.next(reponse)
                        }
     )
@@ -34,7 +33,6 @@ public utilisateurASupprimer$:Observable<Utilisateur>  = this._utilisateur.asObs
 
   async deleteUser(uid) {
     let deleteParams= new HttpParams().set("uid",uid);
-    console.log("dans deleteUser--deleteParams---",deleteParams)
     await this.http.delete(environment.API_URL+"/utilisateur/delete",{params:deleteParams}).toPromise().then();
 
   }
@@ -45,5 +43,15 @@ public utilisateurASupprimer$:Observable<Utilisateur>  = this._utilisateur.asObs
 
   resetUtilisateurSubject(){
     this._utilisateur.next({});
+  }
+
+  updatePassword(login:string,password:string) {
+    let body = {
+      "login": login,
+      "password": password
+    }
+    this.http.put(environment.API_URL+"/utilisateur/update",body).toPromise().then(
+      () => alert("Mot de passe modifié avec succès")
+    );
   }
 }
