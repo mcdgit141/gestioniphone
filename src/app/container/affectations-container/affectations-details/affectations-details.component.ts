@@ -46,8 +46,21 @@ export class AffectationsDetailsComponent implements OnInit {
                this.affectationDuJour = true
             }
             if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone6'){
-                this.pictureIphone = "../../../../assets/imageIphone6.png"
+                this.pictureIphone = "../../../../images/iphone6/imageIphone6.png"
+               }
+             if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone8'){
+                  this.pictureIphone = "../../../../images/iphone8/imageIphone8.png"
+              
+             }
+             if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone9'){
+               this.pictureIphone = "../../../../images/iphone9/imageIphone9.png"
+             }
+             if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone10'){
+               this.pictureIphone = "../../../../images/iphone10/imageIphone10.png"
             }
+             if (this.affectation.iphone.modeleIphoneDTO.nomModele == 'Iphone11'){
+               this.pictureIphone = "../../../../images/iphone11/imageIphone11.png"
+             }
          })
 
       })
