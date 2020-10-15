@@ -1,8 +1,7 @@
 <div class="container" >
 <div >
-    <H2>Détail d'une Affectation</H2>
+    <H3>Détail d'une Affectation</H3>
 </div>
-<br>
 <div>
     <h5>Informations Affectation</h5>
 </div>
@@ -31,9 +30,7 @@
     </tbody>
  </table>
 </div>
-<!-- <br > -->
-<!-- <div class="d-flex mt-2 mb-2 d-flex justify-center"> -->
-    <div>
+<div>
         <h5>Informations Collaborateur</h5>
     </div>
  <div class=" d-flex justify-center"> 
@@ -58,7 +55,6 @@
     </tbody>
  </table>
  </div>
- <!-- <br > -->
  <div>
     <h5>Informations UO</h5>
 </div>
@@ -87,8 +83,7 @@
     </tbody>
  </table>
  </div>
- <!-- <br > -->
- <div>
+  <div>
     <h5>Informations Site</h5>
 </div>
  <div class="d-flex justify-center">
@@ -117,7 +112,6 @@
     </tbody>
  </table>
  </div>
- <!-- <br > -->
  <div>
     <h5>Informations Mobile</h5>
 </div>
@@ -129,6 +123,7 @@
           <th scope="col">Etat Iphone</th>
           <th scope="col">Prix</th>
           <th scope="col">Modele</th>
+          <th scope="col">Photo Iphone</th>
           <th scope="col"></th>
           <th scope="col"></th>
        </tr>
@@ -139,11 +134,11 @@
             <td>{{affectation.iphone.etatIphone}}</td>
             <td>{{affectation.iphone.prixIphone}}</td>
             <td>{{affectation.iphone.modeleIphoneDTO.nomModele}}</td> 
-          
+            <td><img height="65" src={{pictureIphone}}> </td>
         </tr>
     </tbody>
  </table>
- </div>
+  </div>
  
    <div class="d-flex justify-content-center " *ngIf="(isAdmin || isType2) && affectation.motifFin==null">
       <input class="btn btn-primary btn-lg " (click)="closeAffectation($event, affectation.numeroAffectation)" style="margin:25px;" value="Cloturer Affectation">
