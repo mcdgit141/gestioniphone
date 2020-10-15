@@ -13,42 +13,52 @@ export class AffectationsDetailsComponent implements OnInit {
 
   affectation:Affectation;
   numeroAffectation:string;
+
+  affectationDuJour:boolean;
   loading:boolean;  
   isAdmin:boolean;
   isType2:boolean;
 
   constructor(private affectationService:AffectationService, private loginService:LoginService, private router:Router, private route:ActivatedRoute) { }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
 
       this.isAdmin = this.loginService.isItAdmin();
       this.isType2 = this.loginService.isItType2();
-    
+
       this.route.paramMap.subscribe(params => {
-      this.numeroAffectation = params.get("numeroAffectation");
-      
+         this.numeroAffectation = params.get("numeroAffectation");
 
-      this.loading = true;
 
-      this.affectationService.affectations$.subscribe(data => {
-      
-        this.affectation = data.filter(affectationSelectionne => affectationSelectionne.numeroAffectation.toString()
-          ===  this.numeroAffectation)[0];
-              
-          this.loading = false;
-       })
-       
+         this.loading = true;
+
+         this.affectationService.affectations$.subscribe(data => {
+
+            this.affectation = data.filter(affectationSelectionne => affectationSelectionne.numeroAffectation.toString()
+               === this.numeroAffectation)[0];
+
+            this.loading = false;
+
+            this.affectationDuJour = false;
+            let dateJour = new Date().toISOString().slice(0, 10);
+            if (dateJour == this.affectation.dateAffectation.toString()) {
+               this.affectationDuJour = true
+            }
+         })
+
       })
-      
-    } //fin ngOnInit
 
+   } //fin ngOnInit
+
+
+
+   
     closeAffectation(event, numeroAffectation) {
-     
-      this.router.navigate(['container/details/cloture', numeroAffectation]);
+     this.router.navigate(['container/details/cloture', numeroAffectation]);
    }
 
+
     deleteAffectation(event, numeroAffectation) {
-    
       this.router.navigate(['container/details/delete', numeroAffectation]);
   }
  }

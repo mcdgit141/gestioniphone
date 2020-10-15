@@ -19,12 +19,15 @@ export class AffectationService {
   readonly affectations$: Observable<Affectation[]> = this._affectationSubject.asObservable();
   readonly affectationMeta$: Observable<any> = this._affectationMetaSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http:HttpClient) { }
 
   createAffectation(mesdata) {
     this.http.post(this.API + "/affectation/creation", mesdata)
       .subscribe(
-        () => alert("affectation créée")
+         () => {
+            alert("affectation créée");
+            this.router.navigate(['/container/liste']);
+         }
       );
   }
 
@@ -45,7 +48,10 @@ export class AffectationService {
     console.log("****4- methode cloturerAffectatoin dans le serviceAffectation")
     this.http.put(this.API + "/affectation/cloture", mesdatacloture)
       .subscribe(
-        () => alert("affectation clôturée")
+         () => {
+            alert("affectation clôturée");
+            this.router.navigate(['/container/liste']);
+         }
       );
   }
 
@@ -61,7 +67,10 @@ export class AffectationService {
 
     this.http.delete(this.API + "/affectation/suppression", { params: deleteParams })
       .subscribe(
-        () => alert("affectation supprimée")
+         () => {
+            alert("affectation supprimée");
+            this.router.navigate(['/container/liste']);
+         }
       );
   }
 
